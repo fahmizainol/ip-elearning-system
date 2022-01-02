@@ -42,7 +42,7 @@ public class CourseServlet extends HttpServlet {
             
             switch(action){
                 case "/new":
-                    System.out.println("konek");
+                    System.out.println("");
                     break;
                 default:
                     listUser(request, response);
