@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.elearning.servlets;
+package Controller;
 
-import com.elearning.db.CourseDB;
-import com.elearning.model.Course;
+import DAO.CourseDAO;
+import Model.Course;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/")
 public class CourseServlet extends HttpServlet {
     
-    private CourseDB coursedb;
+    private CourseDAO coursedb;
     
 //    protected CourseServlet() throws ServletException{
 //        coursedb = new CourseDB();
@@ -55,7 +55,7 @@ public class CourseServlet extends HttpServlet {
     
     private void listUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
         try{
-            coursedb = new CourseDB();
+            coursedb = new CourseDAO();
             List<Course> listCourse = coursedb.selectAllCourses();
             request.setAttribute("listCourse", listCourse); 
             RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/ManageCourse.jsp");

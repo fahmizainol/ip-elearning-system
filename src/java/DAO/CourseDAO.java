@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.elearning.db;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.elearning.model.Course;
+import Model.Course;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author Fahmi ZB 仕事
  */
-public class CourseDB {
+public class CourseDAO {
     String url = "jdbc:mysql://localhost:3306/elearning";
     String user = "root";
     String password = "";
@@ -26,7 +26,7 @@ public class CourseDB {
     
     private static final String SELECT_ALL_COURSES = "select * from courses";
     
-    public CourseDB(){
+    public CourseDAO(){
         
     }
     

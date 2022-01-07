@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.elearning.db;
+package DAO;
 
 /**
  *
  * @author Fahmi ZB 仕事
  */
-public class LecturerDB {
+public class LecturerDAO {
     String url = "jdbc:mysql://localhost:3306/elearning";
     String user = "root";
     String password = "";
@@ -17,7 +17,7 @@ public class LecturerDB {
     
     private static final String SELECT_ALL_COURSES = "select * from courses";
     
-    public LecturerDB(){
+    public LecturerDAO(){
         
     }
 }

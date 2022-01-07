@@ -199,7 +199,7 @@ img {
                  <div class="card">
                      <div class="card-header">Add an Assignment</div>
                      <div class="card-body">
-                         <form class="form-horizontal" method="post" action="assignments">
+                         <form class="form-horizontal" method="post" action="../Assignment">
                              <div class="form-group">
                                  <label for="title" class="cols-sm-2 control-label">Title</label>
                                  <div class="cols-sm-10">

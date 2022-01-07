@@ -1,4 +1,4 @@
-package org.apache.jsp.jsp;
+package org.apache.jsp;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -242,7 +242,7 @@ public final class AddAssignment_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                 <div class=\"card\">\r\n");
       out.write("                     <div class=\"card-header\">Add an Assignment</div>\r\n");
       out.write("                     <div class=\"card-body\">\r\n");
-      out.write("                         <form class=\"form-horizontal\" method=\"post\" action=\"../Assignment\">\r\n");
+      out.write("                         <form class=\"form-horizontal\" method=\"post\" action=\"Assignment\">\r\n");
       out.write("                             <div class=\"form-group\">\r\n");
       out.write("                                 <label for=\"title\" class=\"cols-sm-2 control-label\">Title</label>\r\n");
       out.write("                                 <div class=\"cols-sm-10\">\r\n");

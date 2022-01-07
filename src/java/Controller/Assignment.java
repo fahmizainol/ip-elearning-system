@@ -1,3 +1,5 @@
+package Controller;
+
 
 
 import java.io.IOException;
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/assignments"})
+@WebServlet(urlPatterns = {"/Assignment"})
 public class Assignment extends HttpServlet {
 
     @Override
@@ -50,6 +52,8 @@ public class Assignment extends HttpServlet {
             
             pst.close();
             con.close();
+            
+            response.sendRedirect("jsp/ViewAssignment.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }
