@@ -2,6 +2,7 @@ package Controller;
 
 
 
+import DBUtility.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -25,24 +26,25 @@ public class Assignment extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        String driver = "com.mysql.jdbc.Driver";
-        String dburl = "jdbc:mysql://localhost:3306/elearning";
-        String dbuname = "root";
-        String dbpwd = "";
+//        String driver = "com.mysql.jdbc.Driver";
+//        String dburl = "jdbc:mysql://localhost:3306/elearning";
+//        String dbuname = "root";
+//        String dbpwd = "";
 
-       
+        Connection conn = null;
 
         String title = request.getParameter("title");
         String date = request.getParameter("date");
       
 
         try {
-            Class.forName(driver);
-            Connection con = DriverManager.getConnection(dburl, dbuname, dbpwd);
+//            Class.forName(driver);
+//            Connection con = DriverManager.getConnection(dburl, dbuname, dbpwd);
+            conn = DBConnection.openConnection();
             
             PreparedStatement pst;
             
-            pst = con.prepareStatement("insert into assignment(title, duedate)values(?,?)");
+            pst = conn.prepareStatement("insert into assignment(title, duedate)values(?,?)");
             pst.setString(1, title);
             pst.setString(2,date);
             pst.executeUpdate();
@@ -51,7 +53,7 @@ public class Assignment extends HttpServlet {
             
             
             pst.close();
-            con.close();
+            conn.close();
             
             response.sendRedirect("jsp/ViewAssignment.jsp");
         } catch (Exception e) {
