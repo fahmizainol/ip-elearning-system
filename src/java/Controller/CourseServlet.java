@@ -45,7 +45,7 @@ public class CourseServlet extends HttpServlet {
                     System.out.println("");
                     break;
                 default:
-                    listUser(request, response);
+                    listCourse(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -53,7 +53,7 @@ public class CourseServlet extends HttpServlet {
         }
     }
     
-    private void listUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+    private void listCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
         try{
             coursedb = new CourseDAO();
             List<Course> listCourse = coursedb.selectAllCourses();
@@ -66,6 +66,11 @@ public class CourseServlet extends HttpServlet {
         }
         
     }
+    
+//    private void addCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+//
+//    }
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
