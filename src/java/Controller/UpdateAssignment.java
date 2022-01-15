@@ -5,6 +5,7 @@ package Controller;
 import DBUtility.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,47 +19,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.TimeZone;
 
-@WebServlet(urlPatterns = {"/Assignment"})
-public class Assignment extends HttpServlet {
+@WebServlet(urlPatterns = {"/UpdateAssignment"})
+public class UpdateAssignment extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-
-//        String driver = "com.mysql.jdbc.Driver";
-//        String dburl = "jdbc:mysql://localhost:3306/elearning";
-//        String dbuname = "root";
-//        String dbpwd = "";
-
         Connection conn = null;
+        conn = DBConnection.openConnection();
+        PreparedStatement pst;
 
-        String title = request.getParameter("title");
-        String date = request.getParameter("date");
-        String course = request.getParameter("course");
+//        select a.id, a.title, a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id where a.id = ?
+        
+        String updated_title = request.getParameter("title");
+        String updated_date = request.getParameter("date");
+//        String course = request.getParameter("course");
       
 
         try {
-//            Class.forName(driver);
-//            Connection con = DriverManager.getConnection(dburl, dbuname, dbpwd);
-            conn = DBConnection.openConnection();
-            
-            PreparedStatement pst;
-            
-            pst = conn.prepareStatement("insert into assignment(title, duedate, course)values(?,?,?)");
-            pst.setString(1, title);
-            pst.setString(2,date);
-            pst.setString(3, course);
+
+            pst = conn.prepareStatement("update assignment set title = ?, duedate = ? where id = ?");
+            pst.setString(1, updated_title);
+            pst.setString(2,updated_date);
             pst.executeUpdate();
     
-            System.out.println("Assignment Added successfuly");
+//            out.println("Assignment Updated successfuly");
             
             
             pst.close();
             conn.close();
             
-            response.sendRedirect("jsp/ViewAssignment.jsp");
+          response.sendRedirect("jsp/ViewAssignment.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }

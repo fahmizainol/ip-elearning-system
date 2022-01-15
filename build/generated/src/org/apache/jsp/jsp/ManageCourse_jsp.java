@@ -237,7 +237,7 @@ public final class ManageCourse_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("     \r\n");
       out.write(" <div class=\"sidebar\">\r\n");
       out.write("  <a class=\"active\" href=\"#home\">Courses</a>\r\n");
-      out.write("  <a href=\"#news\">Assignment</a>\r\n");
+      out.write("  <a href=\"jsp/ViewAssignment.jsp\">Assignment</a>\r\n");
       out.write("  <a href=\"#contact\">Student List</a>\r\n");
       out.write("  <a href=\"#about\">Manage Grade</a>\r\n");
       out.write("  <a href=\"#about\">Logout</a>\r\n");

@@ -213,17 +213,14 @@ img {
 
          </li>
          <li><a href="/">Contacts</a></li>
-         
-         
-         
-        
+    
        </div>
      </ul>
    </nav>
      
  <div class="sidebar">
-  <a class="active" href="#home">Courses</a>
-  <a href="#news">Assignment</a>
+  <a href="jsp/ManageCourse.jsp">Courses</a>
+  <a class="active" href="#news">Assignment</a>
   <a href="#contact">Student List</a>
   <a href="#about">Manage Grade</a>
   <a href="#about">Logout</a>
@@ -234,13 +231,15 @@ img {
       
  
            <div class="content1">
-           <div class="col-md-8">
+           <div class="col-md-6">
                <div class="panel-body">
                    <table id="tbl-asgn" class="table table-responsive table-bordered" cellpadding="0" width="100%">
                       
                        <thead>
                            <tr>
-                               <th>Assignment</th>
+                               
+                               <th>Course</th>
+                               <th>Title</th>
                                <th>Due Date</th>
                                <th>Edit</th>
                                <th>Delete</th>
@@ -256,31 +255,29 @@ img {
                                
                                Class.forName("com.mysql.jdbc.Driver");
                                con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
-                               String query = "select * from assignment";
+//                               String query = "select * from assignment";
+                                 String query = "select a.id,a.title,a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id";
                                Statement st = con.createStatement();
                                rs = st.executeQuery(query);
                                
                                while(rs.next()){
-                                   String id = rs.getString("id");
+                                   String id = rs.getString("a.id");
                                    
-                              
-                               
-                                
-                               
-                              
                                %>
                                
                          
                                <tr>
-                                   <td><%= rs.getString("title") %></td>
-                                   <td><%= rs.getString("duedate") %></td>
-                                   <td><a href="updateassigment.jsp?id=<%=id %>">Edit</a></td>
-                                   <td><a href="deleteassigment.jsp?id=<%=id %>">Delete</a></td>
+                                   <td><%= rs.getString("c.courseName") %></td>
+                                   <td><%= rs.getString("a.title") %></td>
+                                   <td><%= rs.getString("a.duedate") %></td>
+                                   <td><a href="updateAssignment.jsp?id=<%=id %>">Edit</a></td>
+                                   <td><a href="deleteAssignment.jsp?id=<%=id %>">Delete</a></td>
                                </tr>
-                               
-                               <% } %>
+                                <% } %>
+                                 </tbody>
+                              
                             
-                           </tbody>
+                         
                       
                    </table>
                </div>  
