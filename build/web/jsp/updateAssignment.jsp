@@ -1,3 +1,4 @@
+<%@page import="DBUtility.DBConnection"%>
 <%@page import="java.sql.*" %>
 <% Class.forName("com.mysql.jdbc.Driver");%>
 
@@ -204,38 +205,38 @@ img {
                  <div class="card">
                      <div class="card-header">Add an Assignment</div>
                      <div class="card-body">
-                         <form class="form-horizontal" method="post" action="../Assignment">
-                             
-                             
-                             <div class="form-group">
-                                 <label for="subject" class="cols-sm-2 control-label">Course</label>
-                                 <select name="course" id="course" class="form-control">
-<!--                                     <option>Choose any course</option>-->
-                            
-                                 <%
+                         <form class="form-horizontal" method="post" action="../UpdateAssignment">
+                             <%
+                               Connection conn = null;
+                               conn = DBConnection.openConnection();
                                
-                               Connection con;
-                               PreparedStatement pst;
+                               PreparedStatement pst;;
                                ResultSet rs;
+                                
+                               String id = request.getParameter("id");
+//                               String query = "select * from courses";
+//                               Statement st = con.createStatement();
+//                               rs = st.executeQuery(query);
                                
-                               Class.forName("com.mysql.jdbc.Driver");
-                               con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
-                               String query = "select * from courses";
-                               Statement st = con.createStatement();
-                               rs = st.executeQuery(query);
+//                             pst = con.prepareStatement("select * from assignment where id = ?");
+                               pst = conn.prepareStatement("select a.id, a.title, a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id where a.id = ?");
+                               pst.setString(1, id);
+                               rs = pst.executeQuery();
                                
-                               while(rs.next()){
-                                   String id = rs.getString("id");
-                                   String course = rs.getString("CourseName");
+                               while(rs.next())
+                               {
+
+//                                
                                    %>
-                                   
-                                   <option value="<%=id %>"><%= course %></option>
-                                   <%
-                                       }
-                                   
-                               %>
                                
-                                    </select>    
+                              <div class="form-group">
+                                 <label for="course" class="cols-sm-2 control-label">Course</label>
+                                 <div class="cols-sm-10">
+                                     <div class="input-group">
+                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                         <input type="text" class="form-control" name="course" id="name" disabled value="<%= rs.getString("c.courseName")%>">
+                                     </div>
+                                 </div>
                              </div>
                              
                              
@@ -244,7 +245,7 @@ img {
                                  <div class="cols-sm-10">
                                      <div class="input-group">
                                          <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                         <input type="text" class="form-control" name="title" id="name" placeholder="Enter the assignment title" />
+                                         <input type="text" class="form-control" name="title" id="name" value="<%= rs.getString("a.title")%>">
                                      </div>
                                  </div>
                              </div>
@@ -253,7 +254,7 @@ img {
                                         <label for="date" class="cols-sm-2 control-label">Due Date:</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
-                                        <input type="date" id="date" name="date">
+                                        <input type="date" id="date" name="date" value="<%= rs.getString("a.duedate")%>">>
                                          
                                             </div>
                                         </div>
@@ -274,6 +275,7 @@ img {
                                  <a href="view assignment.jsp" style="text-align: left;">Back</a>
                              </div>
                                 
+                            <% } %>
                          </form>
                      </div>
                  </div>

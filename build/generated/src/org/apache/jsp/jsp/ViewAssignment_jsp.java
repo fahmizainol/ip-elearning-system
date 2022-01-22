@@ -259,17 +259,14 @@ public final class ViewAssignment_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\r\n");
       out.write("         </li>\r\n");
       out.write("         <li><a href=\"/\">Contacts</a></li>\r\n");
-      out.write("         \r\n");
-      out.write("         \r\n");
-      out.write("         \r\n");
-      out.write("        \r\n");
+      out.write("    \r\n");
       out.write("       </div>\r\n");
       out.write("     </ul>\r\n");
       out.write("   </nav>\r\n");
       out.write("     \r\n");
       out.write(" <div class=\"sidebar\">\r\n");
-      out.write("  <a class=\"active\" href=\"#home\">Courses</a>\r\n");
-      out.write("  <a href=\"#news\">Assignment</a>\r\n");
+      out.write("  <a href=\"jsp/ManageCourse.jsp\">Courses</a>\r\n");
+      out.write("  <a class=\"active\" href=\"#news\">Assignment</a>\r\n");
       out.write("  <a href=\"#contact\">Student List</a>\r\n");
       out.write("  <a href=\"#about\">Manage Grade</a>\r\n");
       out.write("  <a href=\"#about\">Logout</a>\r\n");
@@ -280,13 +277,15 @@ public final class ViewAssignment_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("      \r\n");
       out.write(" \r\n");
       out.write("           <div class=\"content1\">\r\n");
-      out.write("           <div class=\"col-md-8\">\r\n");
+      out.write("           <div class=\"col-md-6\">\r\n");
       out.write("               <div class=\"panel-body\">\r\n");
       out.write("                   <table id=\"tbl-asgn\" class=\"table table-responsive table-bordered\" cellpadding=\"0\" width=\"100%\">\r\n");
       out.write("                      \r\n");
       out.write("                       <thead>\r\n");
       out.write("                           <tr>\r\n");
-      out.write("                               <th>Assignment</th>\r\n");
+      out.write("                               \r\n");
+      out.write("                               <th>Course</th>\r\n");
+      out.write("                               <th>Title</th>\r\n");
       out.write("                               <th>Due Date</th>\r\n");
       out.write("                               <th>Edit</th>\r\n");
       out.write("                               <th>Delete</th>\r\n");
@@ -303,42 +302,42 @@ public final class ViewAssignment_jsp extends org.apache.jasper.runtime.HttpJspB
                                
                                Class.forName("com.mysql.jdbc.Driver");
                                con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
-                               String query = "select * from assignment";
+//                               String query = "select * from assignment";
+                                 String query = "select a.id,a.title,a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id";
                                Statement st = con.createStatement();
                                rs = st.executeQuery(query);
                                
                                while(rs.next()){
-                                   String id = rs.getString("id");
+                                   String id = rs.getString("a.id");
                                    
-                              
-                               
-                                
-                               
-                              
                                
       out.write("\r\n");
       out.write("                               \r\n");
       out.write("                         \r\n");
       out.write("                               <tr>\r\n");
       out.write("                                   <td>");
-      out.print( rs.getString("title") );
+      out.print( rs.getString("c.courseName") );
       out.write("</td>\r\n");
       out.write("                                   <td>");
-      out.print( rs.getString("duedate") );
+      out.print( rs.getString("a.title") );
       out.write("</td>\r\n");
-      out.write("                                   <td><a href=\"updateassigment.jsp?id=");
+      out.write("                                   <td>");
+      out.print( rs.getString("a.duedate") );
+      out.write("</td>\r\n");
+      out.write("                                   <td><a href=\"updateAssignment.jsp?id=");
       out.print(id );
       out.write("\">Edit</a></td>\r\n");
-      out.write("                                   <td><a href=\"deleteassigment.jsp?id=");
+      out.write("                                   <td><a href=\"deleteAssignment.jsp?id=");
       out.print(id );
       out.write("\">Delete</a></td>\r\n");
       out.write("                               </tr>\r\n");
-      out.write("                               \r\n");
-      out.write("                               ");
+      out.write("                                ");
  } 
       out.write("\r\n");
+      out.write("                                 </tbody>\r\n");
+      out.write("                              \r\n");
       out.write("                            \r\n");
-      out.write("                           </tbody>\r\n");
+      out.write("                         \r\n");
       out.write("                      \r\n");
       out.write("                   </table>\r\n");
       out.write("               </div>  \r\n");

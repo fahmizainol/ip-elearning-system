@@ -186,7 +186,7 @@ img {
      
  <div class="sidebar">
   <a class="active" href="#home">Courses</a>
-  <a href="#news">Assignment</a>
+  <a href="jsp/ViewAssignment.jsp">Assignment</a>
   <a href="#contact">Student List</a>
   <a href="#about">Manage Grade</a>
   <a href="#about">Logout</a>

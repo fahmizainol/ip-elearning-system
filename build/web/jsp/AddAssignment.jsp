@@ -1,3 +1,6 @@
+<%@page import="java.sql.*" %>
+<% Class.forName("com.mysql.jdbc.Driver");%>
+
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -152,6 +155,8 @@ img {
   }
 }
 </style>
+
+
    
    <title>Document</title>
  </head>
@@ -200,6 +205,40 @@ img {
                      <div class="card-header">Add an Assignment</div>
                      <div class="card-body">
                          <form class="form-horizontal" method="post" action="../Assignment">
+                             
+                             
+                             <div class="form-group">
+                                 <label for="subject" class="cols-sm-2 control-label">Course</label>
+                                 <select name="course" id="course" class="form-control">
+<!--                                     <option>Choose any course</option>-->
+                            
+                                 <%
+                               
+                               Connection con;
+                               PreparedStatement pst;
+                               ResultSet rs;
+                               
+                               Class.forName("com.mysql.jdbc.Driver");
+                               con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
+                               String query = "select * from courses";
+                               Statement st = con.createStatement();
+                               rs = st.executeQuery(query);
+                               
+                               while(rs.next()){
+                                   String id = rs.getString("id");
+                                   String course = rs.getString("CourseName");
+                                   %>
+                                   
+                                   <option value="<%=id %>"><%= course %></option>
+                                   <%
+                                       }
+                                   
+                               %>
+                               
+                                    </select>    
+                             </div>
+                             
+                             
                              <div class="form-group">
                                  <label for="title" class="cols-sm-2 control-label">Title</label>
                                  <div class="cols-sm-10">
@@ -215,6 +254,7 @@ img {
                                         <div class="cols-sm-10">
                                             <div class="input-group">
                                         <input type="date" id="date" name="date">
+                                         
                                             </div>
                                         </div>
                              </div>
@@ -242,37 +282,7 @@ img {
      </div>
   
      
-     
-<!--     <div class="row">
-         <form method="POST" align="Left">
-             <div>
-                 <label class="form-label">Title</label>
-                 <input type="text" id="name" name="name" class="form-control" required>
-                 
-               </div>
-             
-             <div>
-                 <label for="date">Due Date:</label>
-                 <input type="date" id="birthday" name="date">
-                 
-             </div>
-                 
-                 <div class="buttons">
 
-            <div class="action_btn">
-
-            <button name="submit" class="action_btn submit" type="submit" value="Save" onclick="myFunction()">Save</button>
-            <button name="submit" class="action_btn cancel" type="submit" value="Cancel" onclick="myFunction2()">Cancel</button>
-
-            <p id="saved"></p>
-
-            </div>
-
-        </div>
-                 
-         </form>
-     </div>
- </body>-->
 
 
 </html>

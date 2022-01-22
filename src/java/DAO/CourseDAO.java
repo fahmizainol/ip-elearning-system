@@ -57,7 +57,7 @@ public class CourseDAO {
         try{
             conn = DBConnection.openConnection();
             PreparedStatement pS = conn.prepareStatement(INSERT_LECTURER);
-            
+//            pS.set
                     
         } catch(Exception e){
             
