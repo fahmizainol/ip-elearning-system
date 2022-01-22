@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Fahmi ZB 仕事
  */
-@WebServlet("/")
+
 public class CourseServlet extends HttpServlet {
     
     private CourseDAO coursedb;
@@ -33,6 +33,14 @@ public class CourseServlet extends HttpServlet {
 //        coursedb = new CourseDB();
 //
 //    }
+
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,32 +75,6 @@ public class CourseServlet extends HttpServlet {
         
     }
     
-//    private void addCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-//
-//    }
 
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

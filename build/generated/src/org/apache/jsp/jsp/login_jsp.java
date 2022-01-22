@@ -180,6 +180,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>Login Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("        \n");
       out.write("        <br/><br/><br/><br/><br/>\n");
       out.write("        <div class=\"login-card\">\n");
       out.write("            <h2 class=\"text\" ><b>E-LEARNING SYSTEM</b></h2><br>\n");
@@ -265,7 +266,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
                                     response.sendRedirect("jsp/teacher_home.jsp");
                                 } else if (dbrole == 2) {
                                     session.setAttribute("student_login", dbemail);
-                                    response.sendRedirect("jsp/student_home.jsp");
+                                    response.sendRedirect("registerSub.jsp");
                                 }
                             }
                         } else {

@@ -27,6 +27,10 @@ public class DBConnection {
     private static final String password="";
     private static Connection conn= null;
     
+    /**
+     *
+     * @return
+     */
     public static Connection openConnection(){
         try{
             Class.forName(driver);
@@ -38,6 +42,9 @@ public class DBConnection {
         
     }
     
+    /**
+     *
+     */
     public static void closeConnection(){
         try{
             conn.close();

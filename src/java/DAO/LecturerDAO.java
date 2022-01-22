@@ -17,6 +17,9 @@ public class LecturerDAO {
     
     private static final String SELECT_ALL_COURSES = "select * from courses";
     
+    /**
+     *
+     */
     public LecturerDAO(){
         
     }

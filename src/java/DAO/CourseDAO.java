@@ -26,10 +26,19 @@ public class CourseDAO {
     private static final String SELECT_ALL_COURSES = "select * from courses";
     private static final String INSERT_LECTURER = "insert into courses (lecturer) values (?)";
     
+    /**
+     *
+     */
     public CourseDAO(){
         
     }
     
+    /**
+     *
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public List<Course> selectAllCourses() throws ClassNotFoundException, SQLException{
                         List<Course> courses = new ArrayList<>();
 
@@ -53,6 +62,10 @@ public class CourseDAO {
         return courses;
     }
     
+    /**
+     *
+     * @throws SQLException
+     */
     public void insertLecturer() throws SQLException{
         try{
             conn = DBConnection.openConnection();

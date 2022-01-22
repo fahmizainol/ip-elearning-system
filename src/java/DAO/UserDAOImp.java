@@ -25,11 +25,24 @@ public class UserDAOImp implements UserDAO {
     ResultSet rs;
 
     private static final String Login_User =  "select * from users where u_name=? and password=? and r_id=? ";
+
+    /**
+     *
+     * @param u_id
+     * @return
+     */
     @Override
     public Users getUsers(int u_id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param name
+     * @param password
+     * @param r_id
+     * @return
+     */
     @Override
     public Users checkUser(String name, String password, int r_id) {
         Users user = new Users();
@@ -53,6 +66,10 @@ public class UserDAOImp implements UserDAO {
         return user;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Users> getAllUsers() {
         List<Users> ul = null;
@@ -75,11 +92,19 @@ public class UserDAOImp implements UserDAO {
         return ul;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Role> getAllRole() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param u
+     */
     @Override
     public void registerUsers(Users u) {
         try {

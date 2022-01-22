@@ -16,10 +16,38 @@ import java.util.List;
  */
 public interface UserDAO {
     
+    /**
+     *
+     * @param u_id
+     * @return
+     */
     public Users getUsers(int u_id);
+
+    /**
+     *
+     * @param u
+     */
     public void registerUsers(Users u);
+
+    /**
+     *
+     * @param name
+     * @param password
+     * @param r_id
+     * @return
+     */
     public Users checkUser(String name, String password, int r_id);
+
+    /**
+     *
+     * @return
+     */
     public List<Users> getAllUsers();  
+
+    /**
+     *
+     * @return
+     */
     public List<Role> getAllRole();
     
 }
