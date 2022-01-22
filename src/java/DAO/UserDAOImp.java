@@ -24,14 +24,33 @@ public class UserDAOImp implements UserDAO {
     PreparedStatement ps;
     ResultSet rs;
 
+    private static final String Login_User =  "select * from users where u_name=? and password=? and r_id=? ";
     @Override
     public Users getUsers(int u_id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Users> checkUser(String name, String password, int r_id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Users checkUser(String name, String password, int r_id) {
+        Users user = new Users();
+    
+        try{
+        conn = DBConnection.openConnection();
+        ps = conn.prepareStatement(Login_User);
+        ps.setString(1, name);
+        ps.setString(2, password);
+        ps.setInt(3, r_id);
+        rs = ps.executeQuery();
+        while(rs.next()){
+            user.setU_name(rs.getString(1));
+            user.setPassword(rs.getString(2));
+            user.setR_id(rs.getInt(3));
+            
+            }
+        
+        }catch(Exception ex){
+        }
+        return user;
     }
 
     @Override
@@ -76,7 +95,7 @@ public class UserDAOImp implements UserDAO {
             ps.executeUpdate();
             
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         }
     }
 

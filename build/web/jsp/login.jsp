@@ -1,8 +1,4 @@
-<%-- 
-    Document   : register
-    Created on : Jan 7, 2022, 3:05:04 PM
-    Author     : muham
---%>
+
 
 
 <%@ page import="java.sql.*" %>
@@ -35,7 +31,7 @@
             }
 
             .login-card input[type=text], input[type=password] {
-               height: 44px;
+                height: 44px;
                 font-size: 16px;
                 width: 100%;
                 margin-bottom: 10px;
@@ -140,20 +136,37 @@
         <title>Login Page</title>
     </head>
     <body>
+        
         <br/><br/><br/><br/><br/>
         <div class="login-card">
             <h2 class="text" ><b>E-LEARNING SYSTEM</b></h2><br>
 
+
+            <!--            <form method="POST" action="../loginUser">
+                            <input type="text" name="u_name" placeholder="Username"/>
+                            <input type="password" name="password" placeholder="Password"/>
+                            <select type="text" name="r_id">
+                                <option value="" selected="selected"> Login As</option>
+                                <option value="1"> Teacher</option>
+                                <option value="2">Student</option>
+            
+                            </select>     
+                            <input type="submit" name="btn_login" class="login login-submit" value="Login"/>
+                        </form>
+            
+                        <div class="login-help">
+                            <a href="register.jsp"> Register</a>
+                        </div>-->
+
             <form method="POST" id="loginform">
-                <input type="text" name="u_name" placeholder="Username"/>
-                <input type="password" name="password" placeholder="Password"/>
-                <select type="text" path="r_id">
-                    <option value="">Login As</option>
-                    <forEach var="role" items="${roles}">
-                        <option value="${role.r_id}">${role.r_name}
-                        </option>
-                    </forEach>
-                </select>   
+                <input type="text" name="txt_username" placeholder="Username"/>
+                <input type="password" name="txt_password" placeholder="Password"/>
+                <select type="text" name="txt_role">
+                    <option value="" selected="selected"> Login As</option>
+                    <option value="1"> Teacher</option>
+                    <option value="2">Student</option>
+
+                </select>    
                 <input type="submit" name="btn_login" class="login login-submit" value="Login"/>
             </form>
 
@@ -163,24 +176,25 @@
 
             <%
                 //check condition admin login not back index.jsp(login) page
-                if (session.getAttribute("teacher_login") != null) {
-                    response.sendRedirect("teacher_home.jsp");
-                }
-
-                //check condition employee login not back index.jsp(login) page
-                if (session.getAttribute("student_login") != null) {
-                    response.sendRedirect("student_home.jsp");
-                }
+//                if (session.getAttribute("teacher_login") != null) {
+//                    response.sendRedirect("teacher_home.jsp");
+//                }
+//
+//                //check condition employee login not back index.jsp(login) page
+//                if (session.getAttribute("student_login") != null) {
+//                    response.sendRedirect("student_home.jsp");
+//                }
 
                 if (request.getParameter("btn_login") != null) {
-                    String username, password, role;
+                    String username, password;
+                    int role;
 
                     username = request.getParameter("txt_username");
                     password = request.getParameter("txt_password");
-                    role = request.getParameter("txt_role");
+                    role = Integer.parseInt(request.getParameter("txt_role"));
 
                     String driver = "com.mysql.jdbc.Driver";
-                    String url = "jdbc:mysql://localhost:3306/userdata";
+                    String url = "jdbc:mysql://localhost:3306/elearning";
                     String uname = "root";
                     String pwd = "";
 
@@ -190,24 +204,24 @@
 
                         PreparedStatement pstmt = null;
 
-                        pstmt = conn.prepareStatement("SELECT * FROM tbl_user WHERE username=? AND password=? AND role=? ");
+                        pstmt = conn.prepareStatement("SELECT * FROM users WHERE u_name=? AND password=? AND r_id=? ");
                         pstmt.setString(1, username);
                         pstmt.setString(2, password);
-                        pstmt.setString(3, role);
+                        pstmt.setInt(3, role);
                         ResultSet rs = pstmt.executeQuery();
 
                         if (rs.next()) {
-                            String dbemail = rs.getString("username");
+                            String dbemail = rs.getString("u_name");
                             String dbpassword = rs.getString("password");
-                            String dbrole = rs.getString("role");
+                            int dbrole = rs.getInt("r_id");
 
-                            if (username.equals(dbemail) && password.equals(dbpassword) && role.equals(dbrole)) {
-                                if (dbrole.equals("teacher")) {
+                            if (username.equals(dbemail) && password.equals(dbpassword) && (role == dbrole)) {
+                                if (dbrole == 1) {
                                     session.setAttribute("teacher_login", dbemail);
-                                    response.sendRedirect("teacher_home.jsp");
-                                } else if (dbrole.equals("student")) {
+                                    response.sendRedirect("jsp/teacher_home.jsp");
+                                } else if (dbrole == 2) {
                                     session.setAttribute("student_login", dbemail);
-                                    response.sendRedirect("student_home.jsp");
+                                    response.sendRedirect("registerSub.jsp");
                                 }
                             }
                         } else {

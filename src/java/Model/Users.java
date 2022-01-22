@@ -5,11 +5,13 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author muham
  */
-public class Users {
+public class Users implements Serializable{
  
     private String u_name;
     private String password;
@@ -18,6 +20,12 @@ public class Users {
     private String phone;
     
     public Users(){};
+
+    public Users(String u_name, String password, int r_id) {
+        this.u_name = u_name;
+        this.password = password;
+        this.r_id = r_id;
+    }
 
     public Users(String u_name, String password, int r_id, String email, String phone) {
         this.u_name = u_name;

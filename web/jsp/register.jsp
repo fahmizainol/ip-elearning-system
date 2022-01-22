@@ -149,19 +149,17 @@
         <div class="register-card">
             <h2 class="text" ><b>Registration </b></h2><br>
 
-            <form   method="POST" action="RegisterUSer">
+            <form  name="form" method="POST" action="<%=request.getContextPath()%>/RegisterUser">
 
-                <input type="text" name="txt_username" placeholder="Username">
-                <input type="text" path="email" placeholder="E-mail"/>
-                 <input type="text" path="phone" placeholder="Phone Number"/>
-                <input type="password" name="txt_password" placeholder="Password">
+                <input type="text" name="u_name" placeholder="Username">
+                <input type="text" name="email" placeholder="E-mail"/>
+                 <input type="text" name="phone" placeholder="Phone Number"/>
+                <input type="password" name="password" placeholder="Password">
 
-                <select type="text" path="r_id">
-                    <option value="">Registration As</option>
-                    <forEach var="role" items="${roles}">
-                        <option value="${role.r_id}">${role.r_name}
-                        </option>
-                    </forEach>
+                <select type="text" name="r_id">
+                  <option value="" selected="selected"> Register as: </option>
+                    <option value="1"> Teacher</option>
+                    <option value="2">Student</option>
                 </select>   
                 <input type="submit" name="regs" class="register register-submit" value="Register" >
             </form>

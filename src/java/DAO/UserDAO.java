@@ -18,7 +18,7 @@ public interface UserDAO {
     
     public Users getUsers(int u_id);
     public void registerUsers(Users u);
-    public List<Users> checkUser(String name, String password, int r_id);
+    public Users checkUser(String name, String password, int r_id);
     public List<Users> getAllUsers();  
     public List<Role> getAllRole();
     

@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/src/java/DAO/UserDAOImp.java</file>
-            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/src/java/Model/Users.java</file>
-            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/web/jsp/register.jsp</file>
-            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/src/java/Controller/RegisterUser.java</file>
-            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/src/java/DAO/CourseDAO.java</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/src/java/Model/Student.java</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/src/java/DAO/CourseDAO.java</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/web/index.html</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/src/java/Model/Lecturer.java</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/src/java/Controller/Assignment.java</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/web/jsp/ManageCourse.jsp</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/src/java/Controller/CourseServlet.java</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/web/jsp/ViewAssignment.jsp</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/web/jsp/index.jsp</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/web/jsp/AddAssignment.jsp</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/src/java/DBUtility/DBConnection.java</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/src/java/Model/Course.java</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/src/java/DAO/LecturerDAO.java</file>
-            <file>file:/C:/Users/Fahmi%20ZB%20W/Documents/GitHub/ip-elearning-system/web/WEB-INF/web.xml</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

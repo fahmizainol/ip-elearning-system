@@ -5,16 +5,20 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Fahmi ZB 仕事
  */
-public class Course {
+public class Course implements Serializable{
     private int id;
     private String code;
     private String courseName;
     private int studentCount;
 
+    public Course(){}
+    
     public Course(int id, String code, String courseName, int studentCount) {
         this.id = id;
         this.code = code;
