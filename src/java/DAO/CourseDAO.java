@@ -20,31 +20,37 @@ import java.util.List;
  * @author Fahmi ZB 仕事
  */
 public class CourseDAO {
-
+    String url = "jdbc:mysql://localhost:3306/elearning";
+    String user = "root";
+    String password = "";
+    String jdbcDriver = "com.mysql.jdbc.Driver";
     Connection conn = null;
-    
     private static final String SELECT_ALL_COURSES = "select * from courses";
-    private static final String INSERT_LECTURER = "insert into courses (lecturer) values (?)";
-    
+    private static final String INSERT_LECTURER= "";
     /**
      *
      */
     public CourseDAO(){
         
     }
+   
+
+    protected Connection getConnection() throws ClassNotFoundException{
+        Connection conn = null;
+        try{
+            Class.forName(jdbcDriver);
+            conn = DriverManager.getConnection(url, user, password);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return conn;
+    }
     
-    /**
-     *
-     * @return
-     * @throws ClassNotFoundException
-     * @throws SQLException
-     */
+
     public List<Course> selectAllCourses() throws ClassNotFoundException, SQLException{
                         List<Course> courses = new ArrayList<>();
-
-        try{
-            conn = DBConnection.openConnection();
-            PreparedStatement pS = conn.prepareStatement(SELECT_ALL_COURSES);
+        try(Connection conn = getConnection();
+                PreparedStatement pS = conn.prepareStatement(SELECT_ALL_COURSES);){
             System.out.println(pS);
             ResultSet rs = pS.executeQuery();
             
@@ -56,16 +62,10 @@ public class CourseDAO {
                 courses.add(new Course(id, name, cn, count));
                 
             } 
-        } catch(Exception e){
-            
         }
         return courses;
     }
-    
-    /**
-     *
-     * @throws SQLException
-     */
+
     public void insertLecturer() throws SQLException{
         try{
             conn = DBConnection.openConnection();
@@ -76,6 +76,7 @@ public class CourseDAO {
             
         }
     }
+
 }
 
 

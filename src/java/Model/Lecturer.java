@@ -20,6 +20,7 @@ public class Lecturer {
     private int age;
     private List<Course> taughtCourses;
 
+
     /**
      *
      * @param id
@@ -147,5 +148,6 @@ public class Lecturer {
     }
     
     
+
     
 }

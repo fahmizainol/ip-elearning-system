@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Fahmi ZB 仕事
  */
-
+@WebServlet(name = "CourseServlet", urlPatterns = {"/CourseServlet"})
 public class CourseServlet extends HttpServlet {
     
     private CourseDAO coursedb;

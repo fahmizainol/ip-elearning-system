@@ -218,10 +218,10 @@
                             if (username.equals(dbemail) && password.equals(dbpassword) && (role == dbrole)) {
                                 if (dbrole == 1) {
                                     session.setAttribute("teacher_login", dbemail);
-                                    response.sendRedirect("jsp/teacher_home.jsp");
+                                    response.sendRedirect("teacher_home.jsp");
                                 } else if (dbrole == 2) {
                                     session.setAttribute("student_login", dbemail);
-                                    response.sendRedirect("registerSub.jsp");
+                                    response.sendRedirect("student_home.jsp");
                                 }
                             }
                         } else {
