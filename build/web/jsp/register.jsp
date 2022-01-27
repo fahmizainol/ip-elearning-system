@@ -165,7 +165,7 @@
             </form>
 
             <div class="register-help">
-                <a href="login.jsp"> Back </a>
+                <a href="<%=request.getContextPath()%>/jsp/login.jsp"> Back </a>
             </div>
 
 

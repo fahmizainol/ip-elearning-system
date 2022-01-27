@@ -9,150 +9,150 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-   <meta charset="UTF-8" />
-   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="stylesheet" href="../css/Dashboard2.css" />
-   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style>
-    /* UTILITIES */
-* {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
-}
-body {
- font-family: cursive;
-}
-a {
- text-decoration: none;
-}
-li {
- list-style: none;
-}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/Dashboard2.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> 
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        /* UTILITIES */
+    * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+    }
+    body {
+     font-family: cursive;
+    }
+    a {
+     text-decoration: none;
+    }
+    li {
+     list-style: none;
+    }
 
-/* NAVBAR STYLING STARTS */
-.navbar {
- display: flex;
- align-items: center;
- justify-content: space-between;
- padding: 20px;
- background-color: teal;
- color: #fff;
-}
-.nav-links a {
- color: #fff;
-}
-/* LOGO */
-.logo {
- font-size: 32px;
-}
-/* NAVBAR MENU */
-.menu {
- display: flex;
- gap: 1em;
- font-size: 18px;
-}
-.menu li:hover {
- background-color: #4c9e9e;
- border-radius: 5px;
- transition: 0.3s ease;
-}
-.menu li {
- padding: 5px 14px;
-}
-/* DROPDOWN MENU */
-.services {
- position: relative; 
-}
-.dropdown {
- background-color: rgb(1, 139, 139);
- padding: 1em 0;
- position: absolute; /*WITH RESPECT TO PARENT*/
- display: none;
- border-radius: 8px;
- top: 35px;
-}
-.dropdown li + li {
- margin-top: 10px;
-}
-.dropdown li {
- padding: 0.5em 1em;
- width: 8em;
- text-align: center;
-}
-.dropdown li:hover {
- background-color: #4c9e9e;
-}
-.services:hover .dropdown {
- display: block;
-}
+    /* NAVBAR STYLING STARTS */
+    .navbar {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 20px;
+     background-color: teal;
+     color: #fff;
+    }
+    .nav-links a {
+     color: #fff;
+    }
+    /* LOGO */
+    .logo {
+     font-size: 32px;
+    }
+    /* NAVBAR MENU */
+    .menu {
+     display: flex;
+     gap: 1em;
+     font-size: 18px;
+    }
+    .menu li:hover {
+     background-color: #4c9e9e;
+     border-radius: 5px;
+     transition: 0.3s ease;
+    }
+    .menu li {
+     padding: 5px 14px;
+    }
+    /* DROPDOWN MENU */
+    .services {
+     position: relative; 
+    }
+    .dropdown {
+     background-color: rgb(1, 139, 139);
+     padding: 1em 0;
+     position: absolute; /*WITH RESPECT TO PARENT*/
+     display: none;
+     border-radius: 8px;
+     top: 35px;
+    }
+    .dropdown li + li {
+     margin-top: 10px;
+    }
+    .dropdown li {
+     padding: 0.5em 1em;
+     width: 8em;
+     text-align: center;
+    }
+    .dropdown li:hover {
+     background-color: #4c9e9e;
+    }
+    .services:hover .dropdown {
+     display: block;
+    }
 
-/*sidebar*/
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
+    /*sidebar*/
+    .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 200px;
+      background-color: #f1f1f1;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+    }
 
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 40px;
-  text-decoration: none;
-}
- 
-.sidebar a.active {
-  background-color: #04AA6D;
-  color: white;
-}
+    .sidebar a {
+      display: block;
+      color: black;
+      padding: 40px;
+      text-decoration: none;
+    }
 
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
+    .sidebar a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
 
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-  padding: 30px;
-}
+    .sidebar a:hover:not(.active) {
+      background-color: #555;
+      color: white;
+    }
 
-div.content1{
-    padding: 40px;
-    border-style: solid;
-}
+    div.content {
+      margin-left: 200px;
+      padding: 1px 16px;
+      height: 1000px;
+      padding: 30px;
+    }
 
-img {
-  width: 250px;
-  height: 250px;
-  text-align: right;
-}
+    div.content1{
+        padding: 40px;
+        border-style: solid;
+    }
 
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
-}
+    img {
+      width: 250px;
+      height: 250px;
+      text-align: right;
+    }
 
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
-}
-</style>
+    @media screen and (max-width: 700px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+      .sidebar a {float: left;}
+      div.content {margin-left: 0;}
+    }
+
+    @media screen and (max-width: 400px) {
+      .sidebar a {
+        text-align: center;
+        float: none;
+      }
+    }
+    </style>
    <title>Document</title>
  </head>
  <body>
@@ -186,7 +186,7 @@ img {
      
  <div class="sidebar">
   <a class="active" href="#home">Courses</a>
-  <a href="jsp/ViewAssignment.jsp">Assignment</a>
+  <a href="ViewAssignment.jsp">Assignment</a>
   <a href="#contact">Student List</a>
   <a href="#about">Manage Grade</a>
   <a href="#about">Logout</a>
