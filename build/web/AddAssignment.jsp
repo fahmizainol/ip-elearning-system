@@ -204,7 +204,7 @@ img {
                  <div class="card">
                      <div class="card-header">Add an Assignment</div>
                      <div class="card-body">
-                         <form class="form-horizontal" method="post" action="../Assignment">
+                         <form class="form-horizontal" method="post" action="Assignment">
                              
                              
                              <div class="form-group">

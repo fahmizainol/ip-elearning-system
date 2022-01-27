@@ -16,6 +16,8 @@ public class Course implements Serializable{
     private String code;
     private String courseName;
     private int studentCount;
+    private String lecturerUsername;
+    private String lecturerName;
 
     /**
      *
@@ -48,10 +50,33 @@ public class Course implements Serializable{
         this.studentCount = studentCount;
     }
     
+    public Course(int id, String lecturerUsername){
+        this.id = id;
+        this.lecturerUsername = lecturerUsername;
+    }
+
+    
+    
+    public String getLecturerUsername() {
+        return lecturerUsername;
+    }
+
+    public void setLecturerUsername(String lecturerUsername) {
+        this.lecturerUsername = lecturerUsername;
+    }
+
+    public String getLecturerName() {
+        return lecturerName;
+    }
+
     /**
      *
      * @return
      */
+    public void setLecrturerName(String lecturerName) {
+        this.lecturerName = lecturerName;
+    }
+
     public int getId() {
         return id;
     }

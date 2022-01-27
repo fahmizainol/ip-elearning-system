@@ -69,7 +69,7 @@ public class Assignment extends HttpServlet {
             pst.close();
             conn.close();
             
-            response.sendRedirect("jsp/ViewAssignment.jsp");
+            response.sendRedirect("ViewAssignment.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }

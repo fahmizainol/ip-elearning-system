@@ -1,6 +1,7 @@
 
 
 
+<%@page import="Model.Lecturer"%>
 <%@ page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -158,11 +159,12 @@
                             <a href="register.jsp"> Register</a>
                         </div>-->
 
-            <form method="POST" id="loginform">
+            <form method="get" id="loginform" action="loginUser">
                 <input type="text" name="txt_username" placeholder="Username"/>
                 <input type="password" name="txt_password" placeholder="Password"/>
+                <input type="hidden" name="action" value="view"/>
                 <select type="text" name="txt_role">
-                    <option value="" selected="selected"> Login As</option>
+                    <option selected="selected"> Login As</option>
                     <option value="1"> Teacher</option>
                     <option value="2">Student</option>
 
@@ -173,7 +175,7 @@
             <div class="login-help">
                 <a href="register.jsp"> Register</a>
             </div>
-
+            <%-- TODO: Delete this section cuz can be handled by loginUser controller now--%>
             <%
                 //check condition admin login not back index.jsp(login) page
 //                if (session.getAttribute("teacher_login") != null) {
@@ -218,10 +220,11 @@
                             if (username.equals(dbemail) && password.equals(dbpassword) && (role == dbrole)) {
                                 if (dbrole == 1) {
                                     session.setAttribute("teacher_login", dbemail);
-                                    response.sendRedirect("teacher_home.jsp");
+                                    response.sendRedirect("CourseServlet");
                                 } else if (dbrole == 2) {
                                     session.setAttribute("student_login", dbemail);
                                     response.sendRedirect("student_home.jsp");
+                                    
                                 }
                             }
                         } else {

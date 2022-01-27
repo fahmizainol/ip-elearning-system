@@ -149,7 +149,7 @@
         <div class="register-card">
             <h2 class="text" ><b>Registration </b></h2><br>
 
-            <form  name="form" method="POST" action="<%=request.getContextPath()%>/RegisterUser">
+            <form  name="form" method="POST" action="RegisterUser">
 
                 <input type="text" name="u_name" placeholder="Username">
                 <input type="text" name="email" placeholder="E-mail"/>
@@ -165,7 +165,7 @@
             </form>
 
             <div class="register-help">
-                <a href="<%=request.getContextPath()%>/jsp/login.jsp"> Back </a>
+                <a href="login.jsp"> Back </a>
             </div>
 
 
