@@ -203,23 +203,20 @@ img {
          <div class="row justify-content-center">
              <div class="col-md-8">
                  <div class="card">
-                     <div class="card-header">Add an Assignment</div>
+                     <div class="card-header">Update Assignment</div>
                      <div class="card-body">
                          <form class="form-horizontal" method="post" action="UpdateAssignment">
                              <%
-                               Connection conn = null;
-                               conn = DBConnection.openConnection();
-                               
-                               PreparedStatement pst;;
+                               Connection con;
+                               PreparedStatement pst;
                                ResultSet rs;
-                                
-                               String id = request.getParameter("id");
-//                               String query = "select * from courses";
-//                               Statement st = con.createStatement();
-//                               rs = st.executeQuery(query);
                                
-//                             pst = con.prepareStatement("select * from assignment where id = ?");
-                               pst = conn.prepareStatement("select a.id, a.title, a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id where a.id = ?");
+                               Class.forName("com.mysql.jdbc.Driver");
+                               con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
+
+                               String id = request.getParameter("id");
+
+                               pst = con.prepareStatement("select a.id, a.title, a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id where a.id = ?");
                                pst.setString(1, id);
                                rs = pst.executeQuery();
                                

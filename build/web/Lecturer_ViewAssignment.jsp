@@ -227,22 +227,22 @@ img {
 </div>
      
       <div class="content">
-          <a href="AddAssignment.jsp" class="button">Add Assignment</a>
+          <a href="Lecturer_AddAssignment.jsp" class="button">Add Assignment</a>
       
  
            <div class="content1">
-           <div class="col-md-6">
+           <div class="col-md-7">
                <div class="panel-body">
                    <table id="tbl-asgn" class="table table-responsive table-bordered" cellpadding="0" width="100%">
                       
                        <thead>
                            <tr>
                                
-                               <th>Course</th>
-                               <th>Title</th>
-                               <th>Due Date</th>
-                               <th>Edit</th>
-                               <th>Delete</th>
+                               <th style="text-align: center">Course</th>
+                               <th style="text-align: center">Title</th>
+                               <th style="text-align: center">Due Date</th>
+                               <th style="text-align: center">Edit Assignment</th>
+                               <th style="text-align: center">Delete Assignment</th>
                            </tr>
                            
                        <tbody>
@@ -270,8 +270,8 @@ img {
                                    <td><%= rs.getString("c.courseName") %></td>
                                    <td><%= rs.getString("a.title") %></td>
                                    <td><%= rs.getString("a.duedate") %></td>
-                                   <td><a href="updateAssignment.jsp?id=<%=id %>">Edit</a></td>
-                                   <td><a href="deleteAssignment.jsp?id=<%=id %>">Delete</a></td>
+                                   <td style="text-align: center"><a href="Lecturer_UpdateAssignment.jsp?id=<%=id %>">Edit</a></td>
+                                   <td style="text-align: center"><a href="Lecturer_DeleteAssignment.jsp?id=<%=id %>">Delete</a></td>
                                </tr>
                                 <% } %>
                                  </tbody>

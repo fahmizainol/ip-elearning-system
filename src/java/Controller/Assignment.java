@@ -38,11 +38,6 @@ public class Assignment extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-//        String driver = "com.mysql.jdbc.Driver";
-//        String dburl = "jdbc:mysql://localhost:3306/elearning";
-//        String dbuname = "root";
-//        String dbpwd = "";
-
         Connection conn = null;
 
         String title = request.getParameter("title");
@@ -51,8 +46,6 @@ public class Assignment extends HttpServlet {
       
 
         try {
-//            Class.forName(driver);
-//            Connection con = DriverManager.getConnection(dburl, dbuname, dbpwd);
             conn = DBConnection.openConnection();
             
             PreparedStatement pst;
@@ -69,7 +62,7 @@ public class Assignment extends HttpServlet {
             pst.close();
             conn.close();
             
-            response.sendRedirect("ViewAssignment.jsp");
+            response.sendRedirect("Lecturer_ViewAssignment.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }

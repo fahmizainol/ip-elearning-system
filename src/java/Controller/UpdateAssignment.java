@@ -6,6 +6,7 @@ import DBUtility.DBConnection;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,31 +32,31 @@ public class UpdateAssignment extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        Connection conn = null;
-        conn = DBConnection.openConnection();
-        PreparedStatement pst;
-
-//        select a.id, a.title, a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id where a.id = ?
         
+        Connection conn = null;
+      
         String updated_title = request.getParameter("title");
         String updated_date = request.getParameter("date");
-//        String course = request.getParameter("course");
-      
 
         try {
-
-            pst = conn.prepareStatement("update assignment set title = ?, duedate = ? where id = ?");
-            pst.setString(1, updated_title);
-            pst.setString(2,updated_date);
-            pst.executeUpdate();
+            
+        conn = DBConnection.openConnection();
+        PreparedStatement pst;
+      
+        
+        String query = "select a.id, a.title, a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id where a.id = ?";
+        pst = conn.prepareStatement("update assignment set a.title = ?, a.duedate = ? where a.id = ?");
+        pst.setString(1, updated_title);
+        pst.setString(2, updated_date);
+        pst.executeUpdate(query);
     
-//            out.println("Assignment Updated successfuly");
+        System.out.println("Assignment updated successfuly");
             
             
-            pst.close();
+               pst.close();
             conn.close();
             
-          response.sendRedirect("ViewAssignment.jsp");
+            response.sendRedirect("Lecturer_ViewAssignment.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }
