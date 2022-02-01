@@ -17,12 +17,10 @@
     
         out.println("Assignment deleted successfuly");
         
-        response.sendRedirect("ViewAssignment.jsp");
+        response.sendRedirect("Lecturer_ViewAssignment.jsp");
         
 
             
             
          
 %>
-             
-            
