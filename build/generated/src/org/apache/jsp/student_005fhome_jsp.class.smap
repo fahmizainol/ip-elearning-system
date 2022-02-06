@@ -1,10 +1,10 @@
 SMAP
-Lecturer_005fProfile_jsp.java
+student_005fhome_jsp.java
 JSP
 *S JSP
 *F
-+ 0 Lecturer_Profile.jsp
-Lecturer_Profile.jsp
++ 0 student_home.jsp
+student_home.jsp
 + 1 layout_header.jsp
 layout_header.jsp
 + 2 layout_navbar.jsp
@@ -18,5 +18,5 @@ layout_sidebar.jsp
 5#2,31:72
 13#0,2:103
 5#3,14:105
-14#0,45:118
+14#0,32:118
 *E
