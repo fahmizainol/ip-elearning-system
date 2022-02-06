@@ -24,7 +24,7 @@
                 box-sizing: border-box;
             }
             body {
-                font-family: cursive;
+                font-family: 'Arial', sans-serif;
             }
             a {
                 text-decoration: none;

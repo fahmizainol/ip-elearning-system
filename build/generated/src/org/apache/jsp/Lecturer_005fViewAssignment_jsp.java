@@ -81,7 +81,7 @@ public final class Lecturer_005fViewAssignment_jsp extends org.apache.jasper.run
       out.write(" box-sizing: border-box;\r\n");
       out.write("}\r\n");
       out.write("body {\r\n");
-      out.write(" font-family: cursive;\r\n");
+      out.write("    font-family: 'Arial', sans-serif;\r\n");
       out.write("}\r\n");
       out.write("a {\r\n");
       out.write(" text-decoration: none;\r\n");
