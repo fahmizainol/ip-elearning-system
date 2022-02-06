@@ -5,16 +5,24 @@
         <servlet-class>Controller.NewServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CourseServlet</servlet-name>
-        <servlet-class>Controller.CourseServlet</servlet-class>
+        <servlet-name>CourseServletController</servlet-name>
+        <servlet-class>Controller.CourseServletController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomePageServlet</servlet-name>
+        <servlet-class>Controller.HomePageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CourseServlet</servlet-name>
-        <url-pattern>/CourseServlet</url-pattern>
+        <servlet-name>CourseServletController</servlet-name>
+        <url-pattern>/CourseServletController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomePageServlet</servlet-name>
+        <url-pattern/>
     </servlet-mapping>
     <session-config>
         <session-timeout>

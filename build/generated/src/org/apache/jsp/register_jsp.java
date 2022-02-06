@@ -1,4 +1,4 @@
-package org.apache.jsp.jsp;
+package org.apache.jsp;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -188,9 +188,7 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"register-card\">\r\n");
       out.write("            <h2 class=\"text\" ><b>Registration </b></h2><br>\r\n");
       out.write("\r\n");
-      out.write("            <form  name=\"form\" method=\"POST\" action=\"");
-      out.print(request.getContextPath());
-      out.write("/RegisterUser\">\r\n");
+      out.write("            <form  name=\"form\" method=\"POST\" action=\"RegisterUser\">\r\n");
       out.write("\r\n");
       out.write("                <input type=\"text\" name=\"u_name\" placeholder=\"Username\">\r\n");
       out.write("                <input type=\"text\" name=\"email\" placeholder=\"E-mail\"/>\r\n");

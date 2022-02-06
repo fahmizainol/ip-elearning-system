@@ -26,6 +26,8 @@ public class CourseDAO {
     ResultSet rs;
     private static final String SELECT_ALL_COURSES = "select * from courses";
     private static final String INSERT_LECTURER = "";
+    private static final String UPDATE_LECTURER=  "UPDATE courses SET lecturer=? WHERE id=?";
+               
 
     /**
      *
@@ -65,6 +67,16 @@ public class CourseDAO {
 
         } catch (Exception e) {
 
+    public void updateLecturer(Course course) throws SQLException{
+        try{
+            conn = DBConnection.openConnection();
+            PreparedStatement pS = conn.prepareStatement(UPDATE_LECTURER);
+            pS.setString(1, course.getLecturerUsername());
+            pS.setInt(2, course.getId());
+            pS.executeUpdate();
+                    
+        } catch(Exception e){
+            
         }
     }
 

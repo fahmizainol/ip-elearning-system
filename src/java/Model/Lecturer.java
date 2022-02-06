@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Fahmi ZB 仕事
  */
-public class Lecturer {
+public class Lecturer implements Serializable{
     private int id;
     private String username;
     private String password;
@@ -50,6 +51,11 @@ public class Lecturer {
         this.age = age;
         this.taughtCourses = taughtCourses;
     }
+
+    public Lecturer() {
+    }
+    
+    
 
     /**
      *

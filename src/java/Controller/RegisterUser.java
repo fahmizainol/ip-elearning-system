@@ -45,7 +45,7 @@ public class RegisterUser extends HttpServlet {
        Users u = new Users(u_name, password,r_id,email,phone);
        
        ud.registerUsers(u);
-       request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+       request.getRequestDispatcher("login.jsp").forward(request, response);
        
        
     }

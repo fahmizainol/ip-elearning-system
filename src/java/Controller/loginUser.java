@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.UserDAO;
 import DAO.UserDAOImp;
+import Model.Lecturer;
 import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,22 +33,30 @@ public class loginUser extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+            HttpSession session = request.getSession();
             UserDAO userlg = new UserDAOImp();
-            String usname = request.getParameter("u_name");
-            String password = request.getParameter("password");
-            int role = Integer.parseInt(request.getParameter("r_id"));
+            String usname = request.getParameter("txt_username");
+            String password = request.getParameter("txt_password");
+            int role = Integer.parseInt(request.getParameter("txt_role"));
+            
+            String action = request.getParameter("action");
             
             Users u = userlg.checkUser(usname, password, role);
-            if(request.getParameter("btn_login") != null){
+//            if(request.getParameter("btn_login") != null){
             if(usname.equals(u.getU_name())&& password.equals(u.getPassword())&& role==u.getR_id()){
                 if(role==1){
-                    request.getRequestDispatcher("/jsp/teacher_home.jsp").forward(request, response);
+                    Lecturer lecturer = new Lecturer();
+                    lecturer.setUsername(usname);
+                    lecturer.setPassword(password);
+                    session.setAttribute("lecturer", lecturer);
+                    request.getRequestDispatcher("CourseServletController").forward(request, response);
+//                    response.forward("CourseServletController");
                 }else if(role==2){
                     request.setAttribute("message", u.getU_name());
-                    RequestDispatcher dispatch = request.getRequestDispatcher("jsp/student_home.jsp");
+                    RequestDispatcher dispatch = request.getRequestDispatcher("student_home.jsp");
                     dispatch.forward(request, response);
             }
             } else {
@@ -54,7 +64,7 @@ public class loginUser extends HttpServlet {
                 }
             
             
-        }
+//        }
     }
     }
 
