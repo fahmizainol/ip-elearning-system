@@ -189,7 +189,7 @@
             <a class="active" href="#home">Courses</a>
             <a href="#news">Assignment</a>
             <a href="#contact">Student List</a>
-            <a href="#about">Manage Grade</a>
+            <a href="registerSub.jsp">Manage Grade</a>
             <a href="#about">Logout</a>
         </div>
 

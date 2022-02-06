@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class student_005fhome_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class stud_005fviewcourse_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -236,32 +236,18 @@ public final class student_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("        <div class=\"content\">\n");
       out.write("            <div class=\"content1\">\n");
       out.write("                <div class=\"text\">\n");
-      out.write("                    <h2>Choose your course</h2>\n");
+      out.write("                    <h2>2021/2022 - SEMESTER 1</h2>\n");
       out.write("\n");
       out.write("\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("            </div>\n");
       out.write("            <div class=\"register\">\n");
-      out.write("                <h1>List of course available </h1>\n");
+      out.write("                <h1>Course Overview </h1>\n");
       out.write("                <br>\n");
       out.write("                <br>\n");
       out.write("                <table class=\"tableCo\" style=\"width:100%\">\n");
-      out.write("                    <tr class=\"Cname1\">\n");
-      out.write("                        <th>No. </th>\n");
-      out.write("                        <th>Course Code </th>\n");
-      out.write("                        <th>Course Name </th>\n");
-      out.write("                        <th>Section</th>\n");
-      out.write("                        <th>Lecturer </th>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("                    </tr>\n");
-      out.write("\n");
-      out.write("                    <tr class=\"Cname2\" >\n");
-      out.write("                        <\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("                    </tr>\n");
+      out.write("                   \n");
       out.write("   </body>\n");
       out.write("</html>");
     } catch (Throwable t) {

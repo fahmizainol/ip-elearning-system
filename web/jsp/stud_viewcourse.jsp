@@ -196,31 +196,16 @@
         <div class="content">
             <div class="content1">
                 <div class="text">
-                    <h2>Choose your course</h2>
-
+                    <h2>2021/2022 - SEMESTER 1</h2>
 
                 </div>
-
             </div>
+            <br>
             <div class="register">
-                <h1>List of course available </h1>
+                <h1>Course Overview </h1>
                 <br>
                 <br>
-                <table class="tableCo" style="width:100%">
-                    <tr class="Cname1">
-                        <th>No. </th>
-                        <th>Course Code </th>
-                        <th>Course Name </th>
-                        <th>Section</th>
-                        <th>Lecturer </th>
-
-
-                    </tr>
-
-                    <tr class="Cname2" >
-                        <
-
-
-                    </tr>
+                
+                   
    </body>
 </html>

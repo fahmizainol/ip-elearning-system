@@ -20,63 +20,52 @@ import java.util.List;
  * @author Fahmi ZB 仕事
  */
 public class CourseDAO {
-    String url = "jdbc:mysql://localhost:3306/elearning";
-    String user = "root";
-    String password = "";
-    String jdbcDriver = "com.mysql.jdbc.Driver";
-    Connection conn = null;
+
+    Connection conn;
+    PreparedStatement ps;
+    ResultSet rs;
     private static final String SELECT_ALL_COURSES = "select * from courses";
-    private static final String INSERT_LECTURER= "";
+    private static final String INSERT_LECTURER = "";
+
     /**
      *
      */
-    public CourseDAO(){
-        
-    }
-   
+    public CourseDAO() {
 
-    protected Connection getConnection() throws ClassNotFoundException{
-        Connection conn = null;
-        try{
-            Class.forName(jdbcDriver);
-            conn = DriverManager.getConnection(url, user, password);
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-        return conn;
     }
-    
 
-    public List<Course> selectAllCourses() throws ClassNotFoundException, SQLException{
-                        List<Course> courses = new ArrayList<>();
-        try(Connection conn = getConnection();
-                PreparedStatement pS = conn.prepareStatement(SELECT_ALL_COURSES);){
-            System.out.println(pS);
-            ResultSet rs = pS.executeQuery();
+    public List<Course> selectAllCourses()  {
+        List<Course> courses = new ArrayList<>();
+        try {
+            conn = DBConnection.openConnection();
+            ps = conn.prepareStatement("select * from courses");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Course c = new Course();
+                c.setId(rs.getInt("id"));
+                c.setCode( rs.getString("code"));
+                c.setCourseName(rs.getString("courseName"));
+                c.setStudentCount( rs.getInt("studentCount"));
             
-            while(rs.next()){
-                int id = rs.getInt("id");
-                String name = rs.getString("code");
-                String cn = rs.getString("courseName");
-                int count = rs.getInt("studentCount");
-                courses.add(new Course(id, name, cn, count));
-                
-            } 
+                courses.add(c);
+
+            }
+        }catch (Exception ex) {
+            ex.printStackTrace();
         }
         return courses;
     }
 
-    public void insertLecturer() throws SQLException{
-        try{
+    public void insertLecturer() throws SQLException {
+        try {
             conn = DBConnection.openConnection();
             PreparedStatement pS = conn.prepareStatement(INSERT_LECTURER);
 //            pS.set
-                    
-        } catch(Exception e){
-            
+
+        } catch (Exception e) {
+
         }
     }
 
 }
-
-
