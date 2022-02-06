@@ -6,9 +6,11 @@
 package Controller;
 
 import DAO.LecturerDAO;
+import DAO.StudentDAO;
 import DAO.UserDAO;
 import DAO.UserDAOImp;
 import Model.Lecturer;
+import Model.Student;
 import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,8 +44,13 @@ public class RegisterUser extends HttpServlet {
         
        HttpSession session = request.getSession();
        UserDAO ud = new UserDAOImp();
+       
        LecturerDAO ld = new LecturerDAO();
        Lecturer lect = null;
+       
+       StudentDAO sd = new StudentDAO();
+       Student student = null;
+       
        
        // SAVE INTO USERS TABLE
        String u_name = request.getParameter("u_name");
@@ -60,8 +67,19 @@ public class RegisterUser extends HttpServlet {
        //SAVE INTO LECTURER TABLE
        String fullname = request.getParameter("fullname");
        if(r_id == 1){
+           lect = new Lecturer(email, u_name, password, fullname, phone);
             try {
                 ld.insertLecturer(lect);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }
+       
+       //SAVE INTO STUDENT TABLE
+       if(r_id == 2){
+           student = new Student(email, u_name, password, fullname, phone);
+            try {
+                sd.insertStudent(student);
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
             }

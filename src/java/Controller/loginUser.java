@@ -6,9 +6,11 @@
 package Controller;
 
 import DAO.LecturerDAO;
+import DAO.StudentDAO;
 import DAO.UserDAO;
 import DAO.UserDAOImp;
 import Model.Lecturer;
+import Model.Student;
 import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -45,6 +47,9 @@ public class loginUser extends HttpServlet {
             LecturerDAO ld = new LecturerDAO();
             Lecturer lecturer = new Lecturer();
             
+            StudentDAO sd = new StudentDAO();
+            Student student = new Student();
+            
             String usname = request.getParameter("txt_username");
             String password = request.getParameter("txt_password");
             int role = Integer.parseInt(request.getParameter("txt_role"));
@@ -56,7 +61,6 @@ public class loginUser extends HttpServlet {
             if(usname.equals(u.getU_name())&& password.equals(u.getPassword())&& role==u.getR_id()){
                 if(role==1){
                     try {
-                        //                    request.getRequestDispatcher("CourseServletController").forward(request, response);
                         lecturer = ld.selectLecturerByUsername(usname, password);
                         session.setAttribute("lecturer", lecturer);
                         response.sendRedirect("CourseServletController?action=" + action);
@@ -64,10 +68,14 @@ public class loginUser extends HttpServlet {
                         Logger.getLogger(loginUser.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else if(role==2){
-                    request.setAttribute("message", u.getU_name());
-                    RequestDispatcher dispatch = request.getRequestDispatcher("student_home.jsp");
-                    dispatch.forward(request, response);
-            }
+                    try {
+                        student = sd.selectStudentByUsername(usname, password);
+                        session.setAttribute("student", student);
+                        response.sendRedirect("Student_Home.jsp");
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(loginUser.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             } else {
                 request.setAttribute("errorMsg", "Invalid username or password or role");
                 }
