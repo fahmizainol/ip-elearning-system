@@ -37,7 +37,14 @@ public class RegisterCourseServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-            List<Course> listC = cDAO.selectAllCourses();
+            List<Course> listC = null;
+        try {
+            listC = cDAO.selectAllCourses();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RegisterCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
             request.setAttribute("listC", listC);
             RequestDispatcher dispatch = request.getRequestDispatcher("RegisterSub.jsp");
             dispatch.forward(request, response);

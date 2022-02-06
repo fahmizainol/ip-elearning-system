@@ -71,7 +71,7 @@ public class loginUser extends HttpServlet {
                     try {
                         student = sd.selectStudentByUsername(usname, password);
                         session.setAttribute("student", student);
-                        response.sendRedirect("Student_Home.jsp");
+                        response.sendRedirect("Student_Home_copy.jsp");
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(loginUser.class.getName()).log(Level.SEVERE, null, ex);
                     }
