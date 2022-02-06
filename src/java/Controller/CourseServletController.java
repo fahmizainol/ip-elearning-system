@@ -75,7 +75,7 @@ public class CourseServletController extends HttpServlet {
             coursedb = new CourseDAO();
             List<Course> listCourse = coursedb.selectAllCourses();
             request.setAttribute("listCourse", listCourse); 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("teacher_home.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Lecturer_HomeManageCourse.jsp");
             dispatcher.forward(request, response);
             
         } catch(Exception e){

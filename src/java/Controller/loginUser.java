@@ -52,8 +52,8 @@ public class loginUser extends HttpServlet {
                     lecturer.setUsername(usname);
                     lecturer.setPassword(password);
                     session.setAttribute("lecturer", lecturer);
-                    request.getRequestDispatcher("CourseServletController").forward(request, response);
-//                    response.forward("CourseServletController");
+//                    request.getRequestDispatcher("CourseServletController").forward(request, response);
+                    response.sendRedirect("CourseServletController?action=" + action);
                 }else if(role==2){
                     request.setAttribute("message", u.getU_name());
                     RequestDispatcher dispatch = request.getRequestDispatcher("student_home.jsp");
