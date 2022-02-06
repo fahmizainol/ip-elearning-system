@@ -3,6 +3,7 @@
     Created on : Dec 31, 2021, 4:47:07 PM
     Author     : Fahmi ZB 
 --%>
+<%@page import="Model.Lecturer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,6 +13,7 @@
  <body>
      <%@include file="layout_navbar.jsp" %>
      <%@include file="layout_sidebar.jsp" %>
+
      
      <div class="content">
         <div class="content1">
@@ -33,12 +35,35 @@
                         <th scope="col">Course Code</th>
                         <th scope="col">Course Title</th>
                         <th scope="col">No. Of Students</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">Lecturer </th>
+                        <th scope="col">Actions </th>
                       </tr>
                     </thead>
                     <tbody>
 
-   
+                        <c:forEach var="c" items="${listCourse}">
+                            <!--Condition to check from DB for empty courses-->
+                            <%--<c:if test="${c.lecturerUsername eq course.lecturerUsername}">--%>
+                            <c:if test="${c.lecturerUsername eq lecturer.username}">
+                                <form action="CourseServletController" method="get">
+                                    <tr>
+                                        <input type="hidden" name="courseID" value="<c:out value='${c.id}' />"/>
+                                        <input type="hidden" name="courseCode" value="<c:out value='${c.code}' />"/>
+                                        <input type="hidden" name="courseName" value="<c:out value='${c.courseName}' />"/>
+                                        <input type="hidden" name="studentCount" value="<c:out value='${c.studentCount}' />"/>                                    
+                                        <input type="hidden" name="action" value="withdraw"/>
+                                        <td scope="row"><c:out value="${c.id}" /></td>
+                                        <td><c:out value="${c.code}" /></td>
+                                        <td><c:out value="${c.courseName}" /></td>
+                                        <td><c:out value="${c.studentCount}" /></td>
+                                        <td><c:out value="${c.lecturerUsername}" /></td>
+                                        <td><button type="submit">Withdraw</button></td>
+
+                                    </tr>
+                                </form>
+                            </c:if>
+
+                        </c:forEach>
 
                     </tbody>
 
@@ -55,23 +80,33 @@
                         <th scope="col">Course Code</th>
                         <th scope="col">Course Title</th>
                         <th scope="col">No. Of Students</th>
+                        <th scope="col">Lecturer</th>
                         <th scope="col">Actions</th>
                       </tr>
                     </thead>
                     
-                        <c:forEach var="course" items="${listCourse}">
-                            <form action="CourseServletController" method="get">
-                                <tr>
-                                    <input type="hidden" name="courseID" value="<c:out value='${course.id}' />"/>
-                                    <input type="hidden" name="action" value="update"/>
-                                    <td scope="row"><c:out value="${course.id}" /></td>
-                                    <td><c:out value="${course.code}" /></td>
-                                    <td><c:out value="${course.courseName}" /></td>
-                                    <td><c:out value="${course.studentCount}" /></td>
-                                    <td><button type="submit">Add</button></td>
+                        <c:forEach var="c" items="${listCourse}">
+                            <!--Condition to check from DB for empty courses-->
+                            <%--<c:if test="${c.lecturerUsername ne course.lecturerUsername}">--%>
+                            <c:if test="${c.lecturerUsername ne lecturer.username}">
+                                <form action="CourseServletController" method="get">
+                                    <tr>
+                                        <input type="hidden" name="courseID" value="<c:out value='${c.id}' />"/>
+                                        <input type="hidden" name="courseCode" value="<c:out value='${c.code}' />"/>
+                                        <input type="hidden" name="courseName" value="<c:out value='${c.courseName}' />"/>
+                                        <input type="hidden" name="studentCount" value="<c:out value='${c.studentCount}' />"/>                                    
+                                        <input type="hidden" name="action" value="update"/>
+                                        <td scope="row"><c:out value="${c.id}" /></td>
+                                        <td><c:out value="${c.code}" /></td>
+                                        <td><c:out value="${c.courseName}" /></td>
+                                        <td><c:out value="${c.studentCount}" /></td>
+                                        <td><c:out value="${c.lecturerUsername}" /></td>
+                                        <td><button type="submit">Teach</button></td>
 
-                                </tr>
-                            </form>
+                                    </tr>
+                                </form>
+                            </c:if>
+
                         </c:forEach>
 
                         

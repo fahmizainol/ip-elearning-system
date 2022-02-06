@@ -8,10 +8,23 @@
 <head>
     <link rel="stylesheet" href="css/Dashboard2.css" />
 </head>
- <div class="sidebar">
-  <a class="active" href="#home">Courses</a>
-  <a href="ViewAssignment.jsp">Assignment</a>
-  <a href="#contact">Student List</a>
-  <a href="#about">Manage Grade</a>
-  <a href="#about">Logout</a>
+ <div id="myDIV" class="sidebar">
+  <a class="btns active" href="Lecturer_HomeManageCourse.jsp">Courses</a>
+  <a class="btns" href="Lecturer_ViewAssignment.jsp">Assignment</a>
+  <a class="btns" href="#contact">Student List</a>
+  <a class="btns" href="#about">Manage Grade</a>
+  <a class="btns" href="#about">Logout</a>
 </div>
+
+<script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("myDIV");
+    var btns = header.getElementsByClassName("btns");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+      });
+    }
+</script>
