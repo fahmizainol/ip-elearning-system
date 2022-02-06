@@ -204,7 +204,7 @@ img {
                  <div class="card">
                      <div class="card-header">Add an Assignment</div>
                      <div class="card-body">
-                         <form class="form-horizontal" method="post" action="Assignment">
+                         <form class="form-horizontal" method="post" action="Assignment" enctype="multipart/form-data" >
                              
                              
                              <div class="form-group">
@@ -262,12 +262,12 @@ img {
                                    
                                    
                              <div class="form-group">
-                                 <input type="file" id="myFile" name="filename">
+                                 <input type="file" name="file" id="file"/>
                              </div>
                   
         
                              <div class="form-group"> 
-                                <input type="submit" value="Submit">
+                                <input type="submit" value="Submit" name="submit" id="submit">
                              </div>
                              
                              <div class="back">

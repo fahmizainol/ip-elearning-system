@@ -231,7 +231,7 @@ img {
       
  
            <div class="content1">
-           <div class="col-md-7">
+           <div class="col-md-8">
                <div class="panel-body">
                    <table id="tbl-asgn" class="table table-responsive table-bordered" cellpadding="0" width="100%">
                       
@@ -241,6 +241,7 @@ img {
                                <th style="text-align: center">Course</th>
                                <th style="text-align: center">Title</th>
                                <th style="text-align: center">Due Date</th>
+                               <th style="text-align: center">Materials</th>
                                <th style="text-align: center">Edit Assignment</th>
                                <th style="text-align: center">Delete Assignment</th>
                            </tr>
@@ -256,7 +257,7 @@ img {
                                Class.forName("com.mysql.jdbc.Driver");
                                con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
 //                               String query = "select * from assignment";
-                                 String query = "select a.id,a.title,a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id";
+                                 String query = "select a.id,a.title,a.duedate,a.Materials, c.courseName from assignment a JOIN courses c ON a.course = c.id";
                                Statement st = con.createStatement();
                                rs = st.executeQuery(query);
                                
@@ -270,6 +271,7 @@ img {
                                    <td><%= rs.getString("c.courseName") %></td>
                                    <td><%= rs.getString("a.title") %></td>
                                    <td><%= rs.getString("a.duedate") %></td>
+                                   <td><%= rs.getBlob("a.Materials") %></td>
                                    <td style="text-align: center"><a href="Lecturer_UpdateAssignment.jsp?id=<%=id %>">Edit</a></td>
                                    <td style="text-align: center"><a href="Lecturer_DeleteAssignment.jsp?id=<%=id %>">Delete</a></td>
                                </tr>
