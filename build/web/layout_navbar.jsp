@@ -17,10 +17,10 @@
     <div class="menu">
 <!--           <li><a href="/">Contacts</a></li>-->
          <li class="services">
-        <a href="/">Profile</a>
+        <a href="#">Profile</a>
         <!-- DROPDOWN MENU -->
         <ul class="dropdown">
-          <li><a href="/">My Profile </a></li>
+          <li><a href="Lecturer_Profile.jsp">My Profile </a></li>
           <li><a href="/">Settings</a></li>  
         </ul>
 

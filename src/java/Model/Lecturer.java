@@ -15,145 +15,123 @@ import java.util.List;
  */
 public class Lecturer implements Serializable{
     private int id;
+    private String email;
     private String username;
     private String password;
-    private String name;
-    private int age;
+    private String fullname;
+    private String phone;
     private List<Course> taughtCourses;
+    
+    public Lecturer(){
+        
+    }
 
-
-    /**
-     *
-     * @param id
-     * @param username
-     * @param password
-     * @param name
-     * @param age
-     * @param taughtCourses
-     */
-    public Lecturer(int id, String username, String password, String name, int age, List<Course> taughtCourses) {
+    public Lecturer(int id, String email, String username, String password, String fullname, String phone, List<Course> taughtCourses) {
         this.id = id;
+        this.email = email;
         this.username = username;
         this.password = password;
-        this.name = name;
-        this.age = age;
+        this.fullname = fullname;
+        this.phone = phone;
         this.taughtCourses = taughtCourses;
     }
 
-    /**
-     *
-     * @param name
-     * @param age
-     * @param taughtCourses
-     */
-    public Lecturer(String name, int age, List<Course> taughtCourses) {
-        this.name = name;
-        this.age = age;
-        this.taughtCourses = taughtCourses;
-    }
-
-    public Lecturer() {
-    }
-    
-    
-
-    /**
-     *
-     * @return
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     *
-     * @param id
-     */
-    public void setId(int id) {
+    public Lecturer(int id, String email, String username, String password, String fullname, String phone) {
         this.id = id;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.phone = phone;
+    }
+    
+    public Lecturer(int id, String email, String password, String fullname, String phone) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.phone = phone;
+    }
+    
+
+    public Lecturer(String email, String username, String password, String fullname, String phone) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.phone = phone;
     }
 
-    /**
-     *
-     * @return
-     */
+    
+    
+    
+    public Lecturer(String email, String password, String fullname, String phone) {
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.phone = phone;
+    }
+
+
     public String getUsername() {
         return username;
     }
 
-    /**
-     *
-     * @param username
-     */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    /**
-     *
-     * @return
-     */
+    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
 
-    /**
-     *
-     * @param password
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getName() {
-        return name;
+    public String getFullname() {
+        return fullname;
     }
 
-    /**
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int getAge() {
-        return age;
+    public String getPhone() {
+        return phone;
     }
 
-    /**
-     *
-     * @param age
-     */
-    public void setAge(int age) {
-        this.age = age;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    /**
-     *
-     * @return
-     */
     public List<Course> getTaughtCourses() {
         return taughtCourses;
     }
 
-    /**
-     *
-     * @param taughtCourses
-     */
     public void setTaughtCourses(List<Course> taughtCourses) {
         this.taughtCourses = taughtCourses;
     }
-    
-    
 
+    
+   
     
 }

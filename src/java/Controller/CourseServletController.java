@@ -55,9 +55,6 @@ public class CourseServletController extends HttpServlet {
             String action = request.getParameter("action");
             
             switch(action){
-                case "/new":
-                    System.out.println("");
-                    break;
                 case "update":
                     updateLecturer(request, response);
                     break;

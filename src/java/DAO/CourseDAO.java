@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author Fahmi ZB 仕事
+ * @author Fahmi ZB 
  */
 public class CourseDAO {
     String url = "jdbc:mysql://localhost:3306/elearning";

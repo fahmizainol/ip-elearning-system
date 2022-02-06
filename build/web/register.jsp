@@ -153,6 +153,7 @@
 
                 <input type="text" name="u_name" placeholder="Username">
                 <input type="text" name="email" placeholder="E-mail"/>
+                <input type="text" name="fullname" placeholder="Full Name"/>
                  <input type="text" name="phone" placeholder="Phone Number"/>
                 <input type="password" name="password" placeholder="Password">
 

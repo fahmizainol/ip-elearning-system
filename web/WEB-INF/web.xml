@@ -12,6 +12,10 @@
         <servlet-name>HomePageServlet</servlet-name>
         <servlet-class>Controller.HomePageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LecturerProfileController</servlet-name>
+        <servlet-class>Controller.LecturerProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -23,6 +27,11 @@
     <servlet-mapping>
         <servlet-name>HomePageServlet</servlet-name>
         <url-pattern/>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LecturerProfileController</servlet-name>
+        <url-pattern>/LecturerProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
