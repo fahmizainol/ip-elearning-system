@@ -5,12 +5,17 @@
  */
 package Controller;
 
+import DAO.LecturerDAO;
+import DAO.StudentDAO;
 import DAO.UserDAO;
 import DAO.UserDAOImp;
 import Model.Lecturer;
+import Model.Student;
 import Model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,6 +43,13 @@ public class loginUser extends HttpServlet {
         
             HttpSession session = request.getSession();
             UserDAO userlg = new UserDAOImp();
+            
+            LecturerDAO ld = new LecturerDAO();
+            Lecturer lecturer = new Lecturer();
+            
+            StudentDAO sd = new StudentDAO();
+            Student student = new Student();
+            
             String usname = request.getParameter("txt_username");
             String password = request.getParameter("txt_password");
             int role = Integer.parseInt(request.getParameter("txt_role"));
@@ -48,17 +60,22 @@ public class loginUser extends HttpServlet {
 //            if(request.getParameter("btn_login") != null){
             if(usname.equals(u.getU_name())&& password.equals(u.getPassword())&& role==u.getR_id()){
                 if(role==1){
-                    Lecturer lecturer = new Lecturer();
-                    lecturer.setUsername(usname);
-                    lecturer.setPassword(password);
-                    session.setAttribute("lecturer", lecturer);
-                    request.getRequestDispatcher("CourseServletController").forward(request, response);
-//                    response.forward("CourseServletController");
+                    try {
+                        lecturer = ld.selectLecturerByUsername(usname, password);
+                        session.setAttribute("lecturer", lecturer);
+                        response.sendRedirect("CourseServletController?action=" + action);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(loginUser.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }else if(role==2){
-                    request.setAttribute("message", u.getU_name());
-                    RequestDispatcher dispatch = request.getRequestDispatcher("student_home.jsp");
-                    dispatch.forward(request, response);
-            }
+                    try {
+                        student = sd.selectStudentByUsername(usname, password);
+                        session.setAttribute("student", student);
+                        response.sendRedirect("Student_Home.jsp");
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(loginUser.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             } else {
                 request.setAttribute("errorMsg", "Invalid username or password or role");
                 }

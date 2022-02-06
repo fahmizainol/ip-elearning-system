@@ -5,13 +5,25 @@ JSP
 *F
 + 0 Lecturer_ViewAssignment.jsp
 Lecturer_ViewAssignment.jsp
++ 1 layout_header.jsp
+layout_header.jsp
++ 2 layout_navbar.jsp
+layout_navbar.jsp
++ 3 layout_sidebar.jsp
+layout_sidebar.jsp
 *L
-1,2:45,2
-3,248:49
-252,15:299
-266,4:314
-270,5:318,3
-275:333
-276:334,3
-277,17:337
+1,2:52,2
+3,5:56
+5#1,13:61
+7#0,19:73
+5#2,31:92
+25#0,2:123
+5#3,14:125
+26#0,23:138
+50,15:163
+64,4:178
+68,5:182,3
+73:197
+74:198,3
+75,17:201
 *E

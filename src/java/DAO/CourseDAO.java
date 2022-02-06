@@ -17,63 +17,94 @@ import java.util.List;
 
 /**
  *
- * @author Fahmi ZB 仕事
+ * @author Fahmi ZB 
  */
 public class CourseDAO {
-    String url = "jdbc:mysql://localhost:3306/elearning";
-    String user = "root";
-    String password = "";
-    String jdbcDriver = "com.mysql.jdbc.Driver";
-    Connection conn = null;
+
+    Connection conn;
+    PreparedStatement ps;
+    ResultSet rs;
     private static final String SELECT_ALL_COURSES = "select * from courses";
+    private static final String INSERT_LECTURER = "";
     private static final String UPDATE_LECTURER=  "UPDATE courses SET lecturer=? WHERE id=?";
+    private static final String UPDATE_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
+    private static final String WITHDRAW_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
                
 
     /**
      *
      */
-    public CourseDAO(){
-        
-    }
-   
+    public CourseDAO() {
 
-    protected Connection getConnection() throws ClassNotFoundException{
-        Connection conn = null;
-        try{
-            Class.forName(jdbcDriver);
-            conn = DriverManager.getConnection(url, user, password);
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-        return conn;
     }
-    
 
-    public List<Course> selectAllCourses() throws ClassNotFoundException, SQLException{
-                        List<Course> courses = new ArrayList<>();
-        try(Connection conn = getConnection();
-                PreparedStatement pS = conn.prepareStatement(SELECT_ALL_COURSES);){
-            System.out.println(pS);
-            ResultSet rs = pS.executeQuery();
+    public List<Course> selectAllCourses()  {
+        List<Course> courses = new ArrayList<>();
+        try {
+            conn = DBConnection.openConnection();
+            ps = conn.prepareStatement("select * from courses");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Course c = new Course();
+                c.setId(rs.getInt("id"));
+                c.setCode( rs.getString("code"));
+                c.setCourseName(rs.getString("courseName"));
+                c.setStudentCount( rs.getInt("studentCount"));
             
+                courses.add(c);
+
+            }
+        }catch (Exception ex) {
+            ex.printStackTrace();
             while(rs.next()){
                 int id = rs.getInt("id");
                 String name = rs.getString("code");
                 String cn = rs.getString("courseName");
                 int count = rs.getInt("studentCount");
-                courses.add(new Course(id, name, cn, count));
+                String lecturer = rs.getString("lecturer");
+                courses.add(new Course(id, name, cn, count, lecturer));
                 
             } 
         }
         return courses;
     }
 
-    public void updateLecturer(Course course) throws SQLException{
+    public void insertLecturer() throws SQLException {
+        try {
+            conn = DBConnection.openConnection();
+            PreparedStatement pS = conn.prepareStatement(INSERT_LECTURER);
+//            pS.set
+
+        } catch (Exception e) {}
+        
+    }
+
+    public void updateLecturer(Course course) throws SQLException{}
+    public void updateCourse(Course course) throws SQLException{
         try{
             conn = DBConnection.openConnection();
-            PreparedStatement pS = conn.prepareStatement(UPDATE_LECTURER);
-            pS.setString(1, course.getLecturerUsername());
-            pS.setInt(2, course.getId());
+            PreparedStatement pS = conn.prepareStatement(UPDATE_COURSE);
+            pS.setString(1, course.getCode());
+            pS.setString(2, course.getCourseName());
+            pS.setInt(3, course.getStudentCount());
+            pS.setString(4, course.getLecturerUsername());
+            pS.setInt(5, course.getId());
+            pS.executeUpdate();
+                    
+        } catch(Exception e){
+            
+        }
+    }
+    public void withdrawCourse(Course course) throws SQLException{
+        try{
+            conn = DBConnection.openConnection();
+            PreparedStatement pS = conn.prepareStatement(WITHDRAW_COURSE);
+            pS.setString(1, course.getCode());
+            pS.setString(2, course.getCourseName());
+            pS.setInt(3, course.getStudentCount());
+            pS.setString(4, course.getLecturerUsername());
+            pS.setInt(5, course.getId());
             pS.executeUpdate();
                     
         } catch(Exception e){
@@ -82,5 +113,3 @@ public class CourseDAO {
     }
 
 }
-
-

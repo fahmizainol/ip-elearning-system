@@ -55,12 +55,11 @@ public class CourseServletController extends HttpServlet {
             String action = request.getParameter("action");
             
             switch(action){
-                case "/new":
-                    System.out.println("");
-                    break;
                 case "update":
-                    updateLecturer(request, response);
+                    updateCourse(request, response);
                     break;
+                case "withdraw":
+                    withdrawCourse(request, response);
                 default:
                     listCourse(request, response);
                     break;
@@ -72,10 +71,11 @@ public class CourseServletController extends HttpServlet {
     
     private void listCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
         try{
+            HttpSession session = request.getSession();
             coursedb = new CourseDAO();
             List<Course> listCourse = coursedb.selectAllCourses();
-            request.setAttribute("listCourse", listCourse); 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("teacher_home.jsp");
+            session.setAttribute("listCourse", listCourse); 
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Lecturer_HomeManageCourse.jsp");
             dispatcher.forward(request, response);
             
         } catch(Exception e){
@@ -84,31 +84,54 @@ public class CourseServletController extends HttpServlet {
         
     }
     
-    private void updateLecturer(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+    private void updateCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
         try{
             HttpSession session = request.getSession();
             lecturer = (Lecturer)session.getAttribute("lecturer");
+            coursedb = new CourseDAO();
             
             int courseID = Integer.parseInt(request.getParameter("courseID"));
+            String courseCode = request.getParameter("courseCode");
+            String courseName = request.getParameter("courseName");
+            int studentCount = Integer.parseInt(request.getParameter("studentCount"));
             String lecturerUsername = lecturer.getUsername();
             
-            course = new Course(courseID, lecturerUsername);
-            coursedb = new CourseDAO();
-            coursedb.updateLecturer(course);
+            course = new Course(courseID, courseCode, courseName, studentCount, lecturerUsername);
+
+            coursedb.updateCourse(course);
+            session.setAttribute("course", course);
             listCourse(request, response);
-//            response.sendRedirect("view");
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("teacher_home.jsp");
-//            dispatcher.forward(request, response);
             
         } catch(Exception e){
             e.printStackTrace();
         }
-//        System.out.println("test");
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-//        dispatcher.forward(request, response);
+
 
     }
-    
+    private void withdrawCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+        try{
+            HttpSession session = request.getSession();
+            lecturer = (Lecturer)session.getAttribute("lecturer");
+            coursedb = new CourseDAO();
+            
+            int courseID = Integer.parseInt(request.getParameter("courseID"));
+            String courseCode = request.getParameter("courseCode");
+            String courseName = request.getParameter("courseName");
+            int studentCount = Integer.parseInt(request.getParameter("studentCount"));
+            String lecturerUsername = "";
+            
+            course = new Course(courseID, courseCode, courseName, studentCount, lecturerUsername);
+
+            coursedb.withdrawCourse(course);
+//            session.setAttribute("course", course);
+            listCourse(request, response);
+            
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
 
 
 }

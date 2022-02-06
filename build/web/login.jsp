@@ -159,7 +159,7 @@
                             <a href="register.jsp"> Register</a>
                         </div>-->
 
-            <form method="get" id="loginform" action="">
+            <form method="get" id="loginform" action="loginUser">
                 <input type="text" name="txt_username" placeholder="Username"/>
                 <input type="password" name="txt_password" placeholder="Password"/>
                 <input type="hidden" name="action" value="view"/>
