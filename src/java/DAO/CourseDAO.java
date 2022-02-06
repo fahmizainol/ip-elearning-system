@@ -20,13 +20,12 @@ import java.util.List;
  * @author Fahmi ZB 
  */
 public class CourseDAO {
-
-    Connection conn;
-    PreparedStatement ps;
-    ResultSet rs;
+    String url = "jdbc:mysql://localhost:3306/elearning";
+    String user = "root";
+    String password = "";
+    String jdbcDriver = "com.mysql.jdbc.Driver";
+    Connection conn = null;
     private static final String SELECT_ALL_COURSES = "select * from courses";
-    private static final String INSERT_LECTURER = "";
-    private static final String UPDATE_LECTURER=  "UPDATE courses SET lecturer=? WHERE id=?";
     private static final String UPDATE_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
     private static final String WITHDRAW_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
                
@@ -34,29 +33,30 @@ public class CourseDAO {
     /**
      *
      */
-    public CourseDAO() {
-
+    public CourseDAO(){
+        
     }
+   
 
-    public List<Course> selectAllCourses()  {
-        List<Course> courses = new ArrayList<>();
-        try {
-            conn = DBConnection.openConnection();
-            ps = conn.prepareStatement("select * from courses");
-            rs = ps.executeQuery();
+    protected Connection getConnection() throws ClassNotFoundException{
+        Connection conn = null;
+        try{
+            Class.forName(jdbcDriver);
+            conn = DriverManager.getConnection(url, user, password);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return conn;
+    }
+    
 
-            while (rs.next()) {
-                Course c = new Course();
-                c.setId(rs.getInt("id"));
-                c.setCode( rs.getString("code"));
-                c.setCourseName(rs.getString("courseName"));
-                c.setStudentCount( rs.getInt("studentCount"));
+    public List<Course> selectAllCourses() throws ClassNotFoundException, SQLException{
+                        List<Course> courses = new ArrayList<>();
+        try(Connection conn = getConnection();
+                PreparedStatement pS = conn.prepareStatement(SELECT_ALL_COURSES);){
+            System.out.println(pS);
+            ResultSet rs = pS.executeQuery();
             
-                courses.add(c);
-
-            }
-        }catch (Exception ex) {
-            ex.printStackTrace();
             while(rs.next()){
                 int id = rs.getInt("id");
                 String name = rs.getString("code");
@@ -70,17 +70,6 @@ public class CourseDAO {
         return courses;
     }
 
-    public void insertLecturer() throws SQLException {
-        try {
-            conn = DBConnection.openConnection();
-            PreparedStatement pS = conn.prepareStatement(INSERT_LECTURER);
-//            pS.set
-
-        } catch (Exception e) {}
-        
-    }
-
-    public void updateLecturer(Course course) throws SQLException{}
     public void updateCourse(Course course) throws SQLException{
         try{
             conn = DBConnection.openConnection();
@@ -113,3 +102,5 @@ public class CourseDAO {
     }
 
 }
+
+

@@ -6,8 +6,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -218,20 +216,17 @@
 
 
                     </tr>
-                   
-                    <c:forEach var="course" items="${listC}">
-                        <tr class="Cname2" >
-                            <td> ${course.id}</td>
-                            <td><c:out value="${course.code}" /></td>
-                            <td><c:out value="${course.courseName}" /></td>
-                            <td><c:out value="${course.studentCount}" /></td>
-
-                            <td><form action="enrol" method="get">
-                                    <input type="submit" value="enroll">
-
-                                </form></td>
-
-                        </tr>
-                    </c:forEach>
-                    </body>
-                    </html>
+                    <jsp:useBean id="c" class="Model.Course" scope="application" ></jsp:useBean>
+                     <tr class="Cname2" >
+                        <td ></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><form action="enrol" method="get">
+                                <input type="submit" value="enroll" name="<%= rs.getString("coursecode")%>">
+                                        
+                            </form></td>
+                          
+                    </tr>
+   </body>
+</html>
