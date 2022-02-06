@@ -65,7 +65,9 @@ public class CourseDAO {
             PreparedStatement pS = conn.prepareStatement(INSERT_LECTURER);
 //            pS.set
 
-        } catch (Exception e) {
+        } catch (Exception e) {}
+        
+    }
 
     public void updateLecturer(Course course) throws SQLException{
         try{
