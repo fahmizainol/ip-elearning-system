@@ -1,0 +1,29 @@
+SMAP
+Lecturer_005fAddAssignment_jsp.java
+JSP
+*S JSP
+*F
++ 0 Lecturer_AddAssignment.jsp
+Lecturer_AddAssignment.jsp
++ 1 layout_header.jsp
+layout_header.jsp
++ 2 layout_navbar.jsp
+layout_navbar.jsp
++ 3 layout_sidebar.jsp
+layout_sidebar.jsp
+*L
+1,2:52,2
+3,4:56
+5#1,13:60
+6#0,3:72
+5#2,31:75
+8#0,2:106
+5#3,14:108
+9#0,17:121
+27,14:140
+40,2:154
+42:156,6
+43:162
+44,3:164
+46,54:167
+*E

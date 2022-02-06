@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author Fahmi ZB 仕事
+ * @author Fahmi ZB 
  */
 public class CourseDAO {
 
@@ -27,6 +27,8 @@ public class CourseDAO {
     private static final String SELECT_ALL_COURSES = "select * from courses";
     private static final String INSERT_LECTURER = "";
     private static final String UPDATE_LECTURER=  "UPDATE courses SET lecturer=? WHERE id=?";
+    private static final String UPDATE_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
+    private static final String WITHDRAW_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
                
 
     /**
@@ -55,6 +57,15 @@ public class CourseDAO {
             }
         }catch (Exception ex) {
             ex.printStackTrace();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String name = rs.getString("code");
+                String cn = rs.getString("courseName");
+                int count = rs.getInt("studentCount");
+                String lecturer = rs.getString("lecturer");
+                courses.add(new Course(id, name, cn, count, lecturer));
+                
+            } 
         }
         return courses;
     }
@@ -69,12 +80,31 @@ public class CourseDAO {
         
     }
 
-    public void updateLecturer(Course course) throws SQLException{
+    public void updateLecturer(Course course) throws SQLException{}
+    public void updateCourse(Course course) throws SQLException{
         try{
             conn = DBConnection.openConnection();
-            PreparedStatement pS = conn.prepareStatement(UPDATE_LECTURER);
-            pS.setString(1, course.getLecturerUsername());
-            pS.setInt(2, course.getId());
+            PreparedStatement pS = conn.prepareStatement(UPDATE_COURSE);
+            pS.setString(1, course.getCode());
+            pS.setString(2, course.getCourseName());
+            pS.setInt(3, course.getStudentCount());
+            pS.setString(4, course.getLecturerUsername());
+            pS.setInt(5, course.getId());
+            pS.executeUpdate();
+                    
+        } catch(Exception e){
+            
+        }
+    }
+    public void withdrawCourse(Course course) throws SQLException{
+        try{
+            conn = DBConnection.openConnection();
+            PreparedStatement pS = conn.prepareStatement(WITHDRAW_COURSE);
+            pS.setString(1, course.getCode());
+            pS.setString(2, course.getCourseName());
+            pS.setInt(3, course.getStudentCount());
+            pS.setString(4, course.getLecturerUsername());
+            pS.setInt(5, course.getId());
             pS.executeUpdate();
                     
         } catch(Exception e){
