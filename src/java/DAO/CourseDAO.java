@@ -38,25 +38,13 @@ public class CourseDAO {
 
     }
 
-    public List<Course> selectAllCourses()  {
+    public List<Course> selectAllCourses() throws SQLException  {
         List<Course> courses = new ArrayList<>();
         try {
             conn = DBConnection.openConnection();
             ps = conn.prepareStatement("select * from courses");
             rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Course c = new Course();
-                c.setId(rs.getInt("id"));
-                c.setCode( rs.getString("code"));
-                c.setCourseName(rs.getString("courseName"));
-                c.setStudentCount( rs.getInt("studentCount"));
             
-                courses.add(c);
-
-            }
-        }catch (Exception ex) {
-            ex.printStackTrace();
             while(rs.next()){
                 int id = rs.getInt("id");
                 String name = rs.getString("code");
@@ -66,6 +54,9 @@ public class CourseDAO {
                 courses.add(new Course(id, name, cn, count, lecturer));
                 
             } 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            
         }
         return courses;
     }
