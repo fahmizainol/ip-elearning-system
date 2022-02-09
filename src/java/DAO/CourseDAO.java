@@ -30,6 +30,7 @@ public class CourseDAO {
     private static final String SELECT_ALL_COURSES_STUD = "select * from studcourse";
     private static final String UPDATE_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
     private static final String WITHDRAW_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
+     
     private static final String REGISTER_COURSE = "insert into studcourse( code, courseN, studentUN, lecturer) values (?,?,?,?)";
                
 
@@ -123,6 +124,7 @@ public class CourseDAO {
             
         }
     }
+    
     
     public void RegisterCourse(StudCourse studc){
         try {

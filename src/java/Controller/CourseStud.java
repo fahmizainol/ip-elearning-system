@@ -30,24 +30,25 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CourseStud", urlPatterns = {"/CourseStud"})
 public class CourseStud extends HttpServlet {
-    
-     private CourseDAO coursedb;
+
+    private CourseDAO coursedb;
     private Course course;
     private StudCourse sCourse;
     private Lecturer lecturer;
     private Student student;
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
+        try {
 //            
             String action = request.getParameter("action");
-            
-            switch(action){
-              
+
+            switch (action) {
+
                 case "register":
-                    RegisterCourse(request,response);
+                    RegisterCourse(request, response);
                     break;
+
                 default:
                     listCourse(request, response);
                     break;
@@ -55,65 +56,61 @@ public class CourseStud extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(CourseServletController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    private void listCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-        try{
+
+    private void listCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        try {
             HttpSession session = request.getSession();
             coursedb = new CourseDAO();
             List<Course> listCourse = coursedb.selectAllCourses();
-            session.setAttribute("listCourse", listCourse); 
+            session.setAttribute("listCourse", listCourse);
             RequestDispatcher dispatcher = request.getRequestDispatcher("Student_RegisterCourse.jsp");
             dispatcher.forward(request, response);
-            
-        } catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-     private void listCourseStud(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-        try{
+
+    private void listCourseStud(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        try {
             HttpSession session = request.getSession();
             coursedb = new CourseDAO();
             List<StudCourse> listCourse = coursedb.selectAllCoursesStud();
-            session.setAttribute("course", listCourse); 
+            session.setAttribute("course", listCourse);
             RequestDispatcher dispatcher = request.getRequestDispatcher("Student_Home.jsp");
             dispatcher.forward(request, response);
-            
-        } catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
-    
-     private void RegisterCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-        try{
-            
+
+    private void RegisterCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        try {
+
             HttpSession session = request.getSession();
-            student = (Student)session.getAttribute("student");
+            student = (Student) session.getAttribute("student");
             coursedb = new CourseDAO();
-            
+
             String courseCode = request.getParameter("courseCode");
             String courseName = request.getParameter("courseName");
             String lect = request.getParameter("lecturer");
             String studName = student.getUsername();
-            
+
             sCourse = new StudCourse(courseCode, courseName, studName, lect);
-            
+
             coursedb.RegisterCourse(sCourse);
-            
-            listCourse(request,response);
-            
-            
-        } catch(Exception e){
+
+            listCourse(request, response);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-
     }
-
-   
 
 }
