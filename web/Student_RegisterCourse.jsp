@@ -60,7 +60,7 @@
                     <tbody>
                     <%
 
-                        Student student = (Student)request.getSession();
+                        Student student = (Student)request.getSession().getAttribute("student");
                         Connection con;
                         PreparedStatement pst;
                         ResultSet rs;

@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/web/login.jsp</file>
+            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/src/java/Controller/CourseStud.java</file>
+            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/web/Lecturer_AddAssignment.jsp</file>
+            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/web/Student_RegisterCourse2.jsp</file>
+            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/web/Student_RegisterCourse.jsp</file>
+            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/src/java/DAO/CourseDAO.java</file>
+            <file>file:/H:/Year%203%20Sem%201/Internet%20Prog/IP-Project/ip-elearning-system/src/java/Controller/loginUser.java</file>
+        </group>
     </open-files>
 </project-private>
