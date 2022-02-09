@@ -49,7 +49,8 @@
                                    <td><%= rs.getString("c.courseName") %></td>
                                    <td><%= rs.getString("a.title") %></td>
                                    <td><%= rs.getString("a.duedate") %></td>
-                                   <td style="text-align: center"><a href="#RidwanPart">Submit</a></td>
+                                   <td style="text-align: center"><a href="/">Submit</a></td>
+                                   
 
                                </tr>
                                 <% } %>
