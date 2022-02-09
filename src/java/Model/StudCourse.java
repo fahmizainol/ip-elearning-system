@@ -16,6 +16,7 @@ public class StudCourse {
     private String courseN;
     private String studentUN;
     private String lecturer;
+    private String registerStatus;
     
     public StudCourse(){};
 
@@ -26,6 +27,16 @@ public class StudCourse {
         this.studentUN = studentUN;
         this.lecturer = lecturer;
     }
+    
+    
+    public StudCourse(int id, String code, String courseN, String studentUN, String lecturer, String registerStatus) {
+        this.id = id;
+        this.code = code;
+        this.courseN = courseN;
+        this.studentUN = studentUN;
+        this.lecturer = lecturer;
+        this.registerStatus = registerStatus;
+    }
 
     public StudCourse(String code, String courseN, String studentUN, String lecturer) {
         this.code = code;
@@ -33,6 +44,24 @@ public class StudCourse {
         this.studentUN = studentUN;
         this.lecturer = lecturer;
     }
+
+    public StudCourse(String code, String courseN, String studentUN, String lecturer, String registerStatus) {
+        this.code = code;
+        this.courseN = courseN;
+        this.studentUN = studentUN;
+        this.lecturer = lecturer;
+        this.registerStatus = registerStatus;
+    }
+
+    public String getRegisterStatus() {
+        return registerStatus;
+    }
+
+    public void setRegisterStatus(String registerStatus) {
+        this.registerStatus = registerStatus;
+    }
+    
+    
 
     
     public int getId() {

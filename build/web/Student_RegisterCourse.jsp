@@ -78,12 +78,13 @@
                             } else {
                                 do {
                     %>
-                        
+                    
                         <td><%= rs.getString(1)%></td>
                         <td><%= rs.getString(2)%></td>
                         <td><%= rs.getString(3)%></td>
                         <td><%= rs.getString(5)%></td>
-                        <td><a href="dropCourse.jsp?id=<%=rs.getString("id") %>"><button type="button" class="delete">Drop</button></a</td>
+                        <td><%= rs.getString(6)%></td>
+                        
                     </tr>
                     <%} while (rs.next());
                             }

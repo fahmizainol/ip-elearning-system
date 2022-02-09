@@ -7,13 +7,24 @@
 <head>
     <link rel="stylesheet" href="css/navbarStud.css" />
 </head>
-
+<!-- <div id="myDIV" class="sidebar">
+  <a class="btns active" href="Student_Home.jsp">Courses</a>
+  <a class="btns" href="Student_ViewAssignment.jsp">Assignment</a>
+  <a class="btns" href="Student_RegisterCourse.jsp">Register Course</a>
+  <a class="btns" href="">Course Grade</a>
+  <a class="btns" href="logout.jsp">Logout</a>
+</div>-->
+<style>
+    p{
+        font-size:large;
+    }
+</style>
 
  <div id="myDIV" class="sidebar">
-  <a class="btns active" href="CourseStud?action=home">Courses</a>
+  <a class="btns active" href="Student_Home.jsp">Courses</a>
   <a class="btns" href="Student_ViewAssignment.jsp">Assignment</a>
-  <a class="btns" href="CourseStud?action=view">Register Course</a>
-  <a class="btns" href="ViewCourseGrade.jsp">Course Grade</a>
+    <a class="btns" href="CourseStud?action=view">Register Course</a>
+  <a class="btns" href="">Course Grade</a>
   <a class="btns" href="logout.jsp">Logout</a>
 </div>
 
