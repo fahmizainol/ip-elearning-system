@@ -49,7 +49,7 @@ public class CourseStud extends HttpServlet {
                     RegisterCourse(request,response);
                     break;
                 default:
-                    listCourse(request, response);
+                    listCourseStud(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -78,7 +78,7 @@ public class CourseStud extends HttpServlet {
             coursedb = new CourseDAO();
             List<StudCourse> listCourse = coursedb.selectAllCoursesStud();
             session.setAttribute("course", listCourse); 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Student_Home.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Student_Homepage.jsp");
             dispatcher.forward(request, response);
             
         } catch(Exception e){
