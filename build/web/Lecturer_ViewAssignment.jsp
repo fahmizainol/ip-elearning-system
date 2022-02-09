@@ -1,10 +1,6 @@
-<%@page import="DBUtility.DBConnection"%>
 <%@page import="java.sql.*" %>
 <% Class.forName("com.mysql.jdbc.Driver");%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -31,14 +27,9 @@
      
       <div class="content">
           <a href="Lecturer_AddAssignment.jsp" class="button">Add Assignment</a>
-          
-            <div class="text">
-                <h2>Assignment List:</h2>
-                <br>
+      
 
-            </div>
-
-           <div class="col-md-10">
+           <div class="col-md-7">
                <div class="panel-body">
                    <table id="tbl-asgn" class="table table-responsive table-bordered" cellpadding="0" width="100%">
                       
@@ -47,26 +38,25 @@
                                
                                <th style="text-align: center">Course</th>
                                <th style="text-align: center">Title</th>
-                               <th style="text-align: center">Created On</th>
                                <th style="text-align: center">Due Date</th>
-                               <th style="text-align: center">Instructions & Materials</th>
-                               <th style="text-align: center">Action</th>
-                               <th style="text-align: center">Action</th>
+                               <th style="text-align: center">Edit Assignment</th>
+                               <th style="text-align: center">Delete Assignment</th>
                            </tr>
                            
                        <tbody>
                           
                            <%
                                
-                               Connection con = null;
-                               PreparedStatement ps = null;
-                               ResultSet rs = null;
+                               Connection con;
+                               PreparedStatement pst;
+                               ResultSet rs;
                                
-                               con = DBConnection.openConnection();
-                              
-                               String query = "select a.id,a.title,a.duedate,a.filename,a.path,a.added_date, c.courseName from assignment a JOIN courses c ON a.course = c.id";
-                               ps = con.prepareStatement(query);
-                               rs = ps.executeQuery();
+                               Class.forName("com.mysql.jdbc.Driver");
+                               con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
+//                               String query = "select * from assignment";
+                                 String query = "select a.id,a.title,a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id";
+                               Statement st = con.createStatement();
+                               rs = st.executeQuery(query);
                                
                                while(rs.next()){
                                    String id = rs.getString("a.id");
@@ -75,11 +65,9 @@
                                
                          
                                <tr>
-                                   <td style="text-align: center"><%= rs.getString("c.courseName") %></td>
-                                   <td style="text-align: center"><%= rs.getString("a.title") %></td>
-                                   <td style="text-align: center"><%= rs.getString("a.added_date") %></td>
-                                   <td style="text-align: center"><%= rs.getString("a.duedate") %></td>
-                                   <td style="text-align: center"><a href="DownloadAssignment?fileName=<%=rs.getString("a.filename")%>">Download</a></td>
+                                   <td><%= rs.getString("c.courseName") %></td>
+                                   <td><%= rs.getString("a.title") %></td>
+                                   <td><%= rs.getString("a.duedate") %></td>
                                    <td style="text-align: center"><a href="Lecturer_UpdateAssignment.jsp?id=<%=id %>">Edit</a></td>
                                    <td style="text-align: center"><a href="Lecturer_DeleteAssignment.jsp?id=<%=id %>">Delete</a></td>
                                </tr>
