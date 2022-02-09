@@ -10,7 +10,7 @@
 <html lang="en">
      <%@include file="layout_header.jsp" %>
  <body>
-     <%@include file="layout_navbar.jsp" %>
+     <%@include file="layout_navbar_student.jsp" %>
      <%@include file="layout_sidebar.jsp" %>
         <div class="content">
             <div class="content1">

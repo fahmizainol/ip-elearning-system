@@ -1,22 +1,22 @@
 SMAP
-student_005fhome_jsp.java
+Student_005fHome_jsp.java
 JSP
 *S JSP
 *F
-+ 0 student_home.jsp
-student_home.jsp
++ 0 Student_Home.jsp
+Student_Home.jsp
 + 1 layout_header.jsp
 layout_header.jsp
-+ 2 layout_navbar.jsp
-layout_navbar.jsp
++ 2 student_layout_navbar.jsp
+student_layout_navbar.jsp
 + 3 layout_sidebar.jsp
 layout_sidebar.jsp
 *L
 5,6:51
-5#1,13:57
-11#0,3:69
-5#2,31:72
-13#0,2:103
-5#3,14:105
-14#0,32:118
+5#1,14:57
+11#0,3:70
+5#2,31:73
+13#0,2:104
+5#3,26:106
+14#0,32:132
 *E

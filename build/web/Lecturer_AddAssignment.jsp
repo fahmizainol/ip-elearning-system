@@ -48,7 +48,6 @@
                                     </select>    
                              </div>
                              
-                               <br>
                              
                              <div class="form-group">
                                  <label for="title" class="cols-sm-2 control-label">Title</label>
@@ -59,8 +58,6 @@
                                      </div>
                                  </div>
                              </div>
-                               
-                               <br>
                              
                              <div class="form-group">
                                         <label for="duedate" class="cols-sm-2 control-label">Due Date:</label>
@@ -72,19 +69,17 @@
                                         </div>
                              </div>
                                  
-                               <br>
+                                   
                                    
                              <div class="form-group">
                                  <input type="file" name="file" id="file"/>
                              </div>
-                               <br>
+                  
         
                              <div class="form-group"> 
                                 <input type="submit" value="Submit" name="submit" id="submit">
                              </div>
                              
-                               <br>
-                               
                              <div class="back">
                                  <a href="view assignment.jsp" style="text-align: left;">Back</a>
                              </div>

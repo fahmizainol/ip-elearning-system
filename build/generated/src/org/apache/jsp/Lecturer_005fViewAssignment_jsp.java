@@ -74,9 +74,9 @@ public final class Lecturer_005fViewAssignment_jsp extends org.apache.jasper.run
       out.write("    <link rel=\"stylesheet\" href=\"css/Dashboard2.css\" />\r\n");
       out.write("    <link rel=\"stylesheet\" href=\"css/bootstrap.min.css\" />\r\n");
       out.write("    <!--<link href=\"//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\" rel=\"stylesheet\" id=\"bootstrap-css\">--> \r\n");
-      out.write("    <script src=\"js/bootstrap.min.js\"></script>\r\n");
-      out.write("    <script src=\"js/jquery-3.6.0.min.js\"></script>\r\n");
-      out.write("   <title>Document</title>\r\n");
+      out.write("    <!--    <script src=\"js/bootstrap.min.js\"></script>\r\n");
+      out.write("        <script src=\"js/jquery-3.6.0.min.js\"></script>-->\r\n");
+      out.write("    <title>Document</title>\r\n");
       out.write("</head>\r\n");
       out.write("\r\n");
       out.write("     <style>\r\n");
