@@ -42,15 +42,17 @@ public class CourseStud extends HttpServlet {
         try {
 //            
             String action = request.getParameter("action");
-
-            switch (action) {
-
+            
+            switch(action){
+                case "view":
+                    listCourse(request, response);
+                    break;
                 case "register":
                     RegisterCourse(request, response);
                     break;
 
                 default:
-                    listCourse(request, response);
+                    listCourseStud(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -79,8 +81,8 @@ public class CourseStud extends HttpServlet {
             HttpSession session = request.getSession();
             coursedb = new CourseDAO();
             List<StudCourse> listCourse = coursedb.selectAllCoursesStud();
-            session.setAttribute("course", listCourse);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Student_Home.jsp");
+            session.setAttribute("course", listCourse); 
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Student_Homepage.jsp");
             dispatcher.forward(request, response);
 
         } catch (Exception e) {

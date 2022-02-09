@@ -53,7 +53,7 @@
                             <th scope="col">Course Code</th>
                             <th scope="col">Course Title</th>
                             <th scope="col">Lecturer</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                    
