@@ -6,7 +6,7 @@
 
 <!--INCLUDE IN EACH JSP FILE-->
 <head>
-    <link rel="stylesheet" href="css/Dashboard2.css" />
+    <link rel="stylesheet" href="css/navbarStud.css" />
 </head>
 <nav class="navbar">
   <!-- LOGO -->

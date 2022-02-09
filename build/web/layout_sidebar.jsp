@@ -13,7 +13,7 @@
   <a class="btns" href="Lecturer_ViewAssignment.jsp">Assignment</a>
   <a class="btns" href="#contact">Student List</a>
   <a class="btns" href="#about">Manage Grade</a>
-  <a class="btns" href="#about">Logout</a>
+  <a class="btns" href="logout.jsp">Logout</a>
 </div>
 
 <script>

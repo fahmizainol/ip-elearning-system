@@ -31,8 +31,8 @@
 
     </style>
     <body>
-        <%@include file="layout_navbar.jsp" %>
-        <%@include file="layout_sidebar.jsp" %>
+        <%@include file="layout_navbar_student.jsp" %>
+        <%@include file="layout_sidebar_student.jsp" %>
         <div class="content">
             <div class="content1">
                 <div class="text">

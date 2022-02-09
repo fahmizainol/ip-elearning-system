@@ -1,18 +1,17 @@
 <%-- 
-    Document   : sidebar
-    Created on : Feb 6, 2022, 2:21:16 PM
-    Author     : Fahmi ZB 
+    Document   : layout_sidebar_student
+    Created on : Feb 9, 2022, 10:19:08 PM
+    Author     : muham
 --%>
 
-<!--INCLUDE IN EACH JSP FILE-->
 <head>
-    <link rel="stylesheet" href="css/Dashboard2.css" />
+    <link rel="stylesheet" href="css/navbarStud.css" />
 </head>
  <div id="myDIV" class="sidebar">
-  <a class="btns active" href="Lecturer_HomeManageCourse.jsp">Courses</a>
-  <a class="btns" href="Lecturer_ViewAssignment.jsp">Assignment</a>
-  <a class="btns" href="#contact">Student List</a>
-  <a class="btns" href="#about">Manage Grade</a>
+  <a class="btns active" href="Student_Home.jsp">Courses</a>
+  <a class="btns" href="Student_ViewAssignment.jsp">Assignment</a>
+  <a class="btns" href="Student_RegisterCourse.jsp">Register Course</a>
+  <a class="btns" href="">Course Grade</a>
   <a class="btns" href="logout.jsp">Logout</a>
 </div>
 
