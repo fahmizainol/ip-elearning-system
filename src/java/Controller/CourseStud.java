@@ -44,7 +44,9 @@ public class CourseStud extends HttpServlet {
             String action = request.getParameter("action");
             
             switch(action){
-              
+                case "view":
+                    listCourse(request, response);
+                    break;
                 case "register":
                     RegisterCourse(request,response);
                     break;
