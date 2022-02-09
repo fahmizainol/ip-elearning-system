@@ -21,6 +21,7 @@
                                <th style="text-align: center">Course</th>
                                <th style="text-align: center">Title</th>
                                <th style="text-align: center">Due Date</th>
+                               <th style="text-align: center">Instructions & Materials</th>
                                <th style="text-align: center">Submit Assignment</th>
                            </tr>
                            
@@ -35,7 +36,8 @@
                                Class.forName("com.mysql.jdbc.Driver");
                                con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
 //                               String query = "select * from assignment";
-                                 String query = "select a.id,a.title,a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id";
+                                 String query = "select a.id,a.title,a.duedate,a.filename,a.path,a.added_date, c.courseName from assignment a JOIN courses c ON a.course = c.id";
+                                 
                                Statement st = con.createStatement();
                                rs = st.executeQuery(query);
                                
@@ -49,6 +51,7 @@
                                    <td><%= rs.getString("c.courseName") %></td>
                                    <td><%= rs.getString("a.title") %></td>
                                    <td><%= rs.getString("a.duedate") %></td>
+                                   <td style="text-align: center"><a href="DownloadAssignment?fileName=<%=rs.getString("a.filename")%>">Download</a></td>
                                    <td style="text-align: center"><a href="/">Submit</a></td>
                                    
 
