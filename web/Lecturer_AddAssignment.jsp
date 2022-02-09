@@ -14,7 +14,7 @@
                  <div class="card">
                      <div class="card-header">Add an Assignment</div>
                      <div class="card-body">
-                         <form class="form-horizontal" method="post" action="UploadAssignment" enctype="multipart/form-data" >
+                         <form class="form-horizontal" method="post" action="Assignment">
                              
                              
                              <div class="form-group">
@@ -60,10 +60,10 @@
                              </div>
                              
                              <div class="form-group">
-                                        <label for="duedate" class="cols-sm-2 control-label">Due Date:</label>
+                                        <label for="date" class="cols-sm-2 control-label">Due Date:</label>
                                         <div class="cols-sm-10">
                                             <div class="input-group">
-                                        <input type="date" id="date" name="duedate">
+                                        <input type="date" id="date" name="date">
                                          
                                             </div>
                                         </div>
@@ -72,12 +72,12 @@
                                    
                                    
                              <div class="form-group">
-                                 <input type="file" name="file" id="file"/>
+                                 <input type="file" id="myFile" name="filename">
                              </div>
                   
         
                              <div class="form-group"> 
-                                <input type="submit" value="Submit" name="submit" id="submit">
+                                <input type="submit" value="Submit">
                              </div>
                              
                              <div class="back">

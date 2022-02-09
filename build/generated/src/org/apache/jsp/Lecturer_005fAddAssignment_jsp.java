@@ -140,7 +140,7 @@ public final class Lecturer_005fAddAssignment_jsp extends org.apache.jasper.runt
       out.write("                 <div class=\"card\">\r\n");
       out.write("                     <div class=\"card-header\">Add an Assignment</div>\r\n");
       out.write("                     <div class=\"card-body\">\r\n");
-      out.write("                         <form class=\"form-horizontal\" method=\"post\" action=\"UploadAssignment\" enctype=\"multipart/form-data\" >\r\n");
+      out.write("                         <form class=\"form-horizontal\" method=\"post\" action=\"Assignment\">\r\n");
       out.write("                             \r\n");
       out.write("                             \r\n");
       out.write("                             <div class=\"form-group\">\r\n");
@@ -195,10 +195,10 @@ public final class Lecturer_005fAddAssignment_jsp extends org.apache.jasper.runt
       out.write("                             </div>\r\n");
       out.write("                             \r\n");
       out.write("                             <div class=\"form-group\">\r\n");
-      out.write("                                        <label for=\"duedate\" class=\"cols-sm-2 control-label\">Due Date:</label>\r\n");
+      out.write("                                        <label for=\"date\" class=\"cols-sm-2 control-label\">Due Date:</label>\r\n");
       out.write("                                        <div class=\"cols-sm-10\">\r\n");
       out.write("                                            <div class=\"input-group\">\r\n");
-      out.write("                                        <input type=\"date\" id=\"date\" name=\"duedate\">\r\n");
+      out.write("                                        <input type=\"date\" id=\"date\" name=\"date\">\r\n");
       out.write("                                         \r\n");
       out.write("                                            </div>\r\n");
       out.write("                                        </div>\r\n");
@@ -207,12 +207,12 @@ public final class Lecturer_005fAddAssignment_jsp extends org.apache.jasper.runt
       out.write("                                   \r\n");
       out.write("                                   \r\n");
       out.write("                             <div class=\"form-group\">\r\n");
-      out.write("                                 <input type=\"file\" name=\"file\" id=\"file\"/>\r\n");
+      out.write("                                 <input type=\"file\" id=\"myFile\" name=\"filename\">\r\n");
       out.write("                             </div>\r\n");
       out.write("                  \r\n");
       out.write("        \r\n");
       out.write("                             <div class=\"form-group\"> \r\n");
-      out.write("                                <input type=\"submit\" value=\"Submit\" name=\"submit\" id=\"submit\">\r\n");
+      out.write("                                <input type=\"submit\" value=\"Submit\">\r\n");
       out.write("                             </div>\r\n");
       out.write("                             \r\n");
       out.write("                             <div class=\"back\">\r\n");

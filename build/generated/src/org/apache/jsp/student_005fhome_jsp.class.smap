@@ -7,8 +7,8 @@ JSP
 Student_Home.jsp
 + 1 layout_header.jsp
 layout_header.jsp
-+ 2 student_layout_navbar.jsp
-student_layout_navbar.jsp
++ 2 layout_navbar.jsp
+layout_navbar.jsp
 + 3 layout_sidebar.jsp
 layout_sidebar.jsp
 *L

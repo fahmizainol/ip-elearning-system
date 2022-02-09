@@ -19,7 +19,7 @@ public final class Student_005fHome_jsp extends org.apache.jasper.runtime.HttpJs
   static {
     _jspx_dependants = new java.util.ArrayList<String>(3);
     _jspx_dependants.add("/layout_header.jsp");
-    _jspx_dependants.add("/student_layout_navbar.jsp");
+    _jspx_dependants.add("/layout_navbar.jsp");
     _jspx_dependants.add("/layout_sidebar.jsp");
   }
 
@@ -78,6 +78,43 @@ public final class Student_005fHome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("    <title>Document</title>\r\n");
       out.write("</head>\r\n");
       out.write("\r\n");
+      out.write("    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">\r\n");
+      out.write("\r\n");
+      out.write("    <body>\r\n");
+      out.write("        ");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!--INCLUDE IN EACH JSP FILE-->\r\n");
+      out.write("<head>\r\n");
+      out.write("    <link rel=\"stylesheet\" href=\"css/Dashboard2.css\" />\r\n");
+      out.write("</head>\r\n");
+      out.write("<nav class=\"navbar\">\r\n");
+      out.write("  <!-- LOGO -->\r\n");
+      out.write("  <div class=\"logo\">E-learning</div>\r\n");
+      out.write("  <!-- NAVIGATION MENU -->\r\n");
+      out.write("  <ul class=\"nav-links\">\r\n");
+      out.write("    <!-- NAVIGATION MENUS -->\r\n");
+      out.write("    <div class=\"menu\">\r\n");
+      out.write("<!--           <li><a href=\"/\">Contacts</a></li>-->\r\n");
+      out.write("         <li class=\"services\">\r\n");
+      out.write("        <a href=\"#\">Profile</a>\r\n");
+      out.write("        <!-- DROPDOWN MENU -->\r\n");
+      out.write("        <ul class=\"dropdown\">\r\n");
+      out.write("          <li><a href=\"Lecturer_Profile.jsp\">My Profile </a></li>\r\n");
+      out.write("          <li><a href=\"/\">Settings</a></li>  \r\n");
+      out.write("        </ul>\r\n");
+      out.write("\r\n");
+      out.write("      </li>\r\n");
+      out.write("      <li><a href=\"/\">Contacts</a></li>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("    </div>\r\n");
+      out.write("  </ul>\r\n");
+      out.write("</nav>");
+      out.write("\r\n");
+      out.write("        ");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!--INCLUDE IN EACH JSP FILE-->\r\n");
@@ -115,6 +152,7 @@ public final class Student_005fHome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("\r\n");
       out.write("            </div>\r\n");
       out.write("            <br>\r\n");
+      out.write("            <div class=\"register\">\r\n");
       out.write("                <h1>Course Overview</h1>\r\n");
       out.write("                <br>\r\n");
       out.write("                <br>\r\n");
