@@ -3,9 +3,13 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import DBUtility.DBConnection;
 import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.Connection;
 
-public final class Lecturer_005fAddAssignment_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class Lecturer_005fViewAssignment_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -38,7 +42,7 @@ public final class Lecturer_005fAddAssignment_jsp extends org.apache.jasper.runt
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("text/html");
+      response.setContentType("text/html;charset=UTF-8");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -49,13 +53,17 @@ public final class Lecturer_005fAddAssignment_jsp extends org.apache.jasper.runt
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\r');
-      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
  Class.forName("com.mysql.jdbc.Driver");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
-      out.write("<html lang=\"en\">\r\n");
+      out.write("<html>\r\n");
       out.write("     ");
       out.write("\r\n");
       out.write("\r\n");
@@ -71,6 +79,22 @@ public final class Lecturer_005fAddAssignment_jsp extends org.apache.jasper.runt
       out.write("    <title>Document</title>\r\n");
       out.write("</head>\r\n");
       out.write("\r\n");
+      out.write("     <style>\r\n");
+      out.write("         .button{\r\n");
+      out.write("            background-color: #4CAF50;\r\n");
+      out.write("            border: none;\r\n");
+      out.write("            color: white;\r\n");
+      out.write("            padding: 15px 32px;\r\n");
+      out.write("            text-align: center;\r\n");
+      out.write("            text-decoration: none;\r\n");
+      out.write("            display: inline-block;\r\n");
+      out.write("            font-size: 16px;\r\n");
+      out.write("            margin: 4px 2px;\r\n");
+      out.write("            cursor: pointer;\r\n");
+      out.write("            float: right;\r\n");
+      out.write("\r\n");
+      out.write("          }\r\n");
+      out.write("     </style>\r\n");
       out.write(" <body>\r\n");
       out.write("     ");
       out.write("\r\n");
@@ -134,103 +158,95 @@ public final class Lecturer_005fAddAssignment_jsp extends org.apache.jasper.runt
       out.write("</script>");
       out.write("\r\n");
       out.write("     \r\n");
-      out.write("     <div class=\"container mt-5\">\r\n");
-      out.write("         <div class=\"row justify-content-center\">\r\n");
-      out.write("             <div class=\"col-md-8\">\r\n");
-      out.write("                 <div class=\"card\">\r\n");
-      out.write("                     <div class=\"card-header\">Add an Assignment</div>\r\n");
-      out.write("                     <div class=\"card-body\">\r\n");
-      out.write("                         <form class=\"form-horizontal\" method=\"post\" action=\"UploadAssignment\" enctype=\"multipart/form-data\" >\r\n");
-      out.write("                             \r\n");
-      out.write("                             \r\n");
-      out.write("                             <div class=\"form-group\">\r\n");
-      out.write("                                 <label for=\"subject\" class=\"cols-sm-2 control-label\">Course</label>\r\n");
-      out.write("                                 <select name=\"course\" id=\"course\" class=\"form-control\">\r\n");
-      out.write("<!--                                     <option>Choose any course</option>-->\r\n");
-      out.write("                            \r\n");
-      out.write("                                 ");
+      out.write("      <div class=\"content\">\r\n");
+      out.write("          <a href=\"Lecturer_AddAssignment.jsp\" class=\"button\">Add Assignment</a>\r\n");
+      out.write("          \r\n");
+      out.write("            <div class=\"text\">\r\n");
+      out.write("                <h2>Assignment List:</h2>\r\n");
+      out.write("                <br>\r\n");
+      out.write("\r\n");
+      out.write("            </div>\r\n");
+      out.write("\r\n");
+      out.write("           <div class=\"col-md-10\">\r\n");
+      out.write("               <div class=\"panel-body\">\r\n");
+      out.write("                   <table id=\"tbl-asgn\" class=\"table table-responsive table-bordered\" cellpadding=\"0\" width=\"100%\">\r\n");
+      out.write("                      \r\n");
+      out.write("                       <thead>\r\n");
+      out.write("                           <tr>\r\n");
+      out.write("                               \r\n");
+      out.write("                               <th style=\"text-align: center\">Course</th>\r\n");
+      out.write("                               <th style=\"text-align: center\">Title</th>\r\n");
+      out.write("                               <th style=\"text-align: center\">Created On</th>\r\n");
+      out.write("                               <th style=\"text-align: center\">Due Date</th>\r\n");
+      out.write("                               <th style=\"text-align: center\">Instructions & Materials</th>\r\n");
+      out.write("                               <th style=\"text-align: center\">Action</th>\r\n");
+      out.write("                               <th style=\"text-align: center\">Action</th>\r\n");
+      out.write("                           </tr>\r\n");
+      out.write("                           \r\n");
+      out.write("                       <tbody>\r\n");
+      out.write("                          \r\n");
+      out.write("                           ");
 
                                
-                               Connection con;
-                               PreparedStatement pst;
-                               ResultSet rs;
+                               Connection con = null;
+                               PreparedStatement ps = null;
+                               ResultSet rs = null;
                                
-                               Class.forName("com.mysql.jdbc.Driver");
-                               con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
-                               String query = "select * from courses";
-                               Statement st = con.createStatement();
-                               rs = st.executeQuery(query);
+                               con = DBConnection.openConnection();
+                              
+                               String query = "select a.id,a.title,a.duedate,a.filename,a.path,a.added_date, c.courseName from assignment a JOIN courses c ON a.course = c.id";
+                               ps = con.prepareStatement(query);
+                               rs = ps.executeQuery();
                                
                                while(rs.next()){
-                                   String id = rs.getString("id");
-                                   String course = rs.getString("CourseName");
-                                   
-      out.write("\r\n");
-      out.write("                                   \r\n");
-      out.write("                                   <option value=\"");
-      out.print(id );
-      out.write('"');
-      out.write('>');
-      out.print( course );
-      out.write("</option>\r\n");
-      out.write("                                   ");
-
-                                       }
+                                   String id = rs.getString("a.id");
                                    
                                
       out.write("\r\n");
       out.write("                               \r\n");
-      out.write("                                    </select>    \r\n");
-      out.write("                             </div>\r\n");
-      out.write("                             \r\n");
-      out.write("                             \r\n");
-      out.write("                             <div class=\"form-group\">\r\n");
-      out.write("                                 <label for=\"title\" class=\"cols-sm-2 control-label\">Title</label>\r\n");
-      out.write("                                 <div class=\"cols-sm-10\">\r\n");
-      out.write("                                     <div class=\"input-group\">\r\n");
-      out.write("                                         <span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>\r\n");
-      out.write("                                         <input type=\"text\" class=\"form-control\" name=\"title\" id=\"name\" placeholder=\"Enter the assignment title\" />\r\n");
-      out.write("                                     </div>\r\n");
-      out.write("                                 </div>\r\n");
-      out.write("                             </div>\r\n");
-      out.write("                             \r\n");
-      out.write("                             <div class=\"form-group\">\r\n");
-      out.write("                                        <label for=\"duedate\" class=\"cols-sm-2 control-label\">Due Date:</label>\r\n");
-      out.write("                                        <div class=\"cols-sm-10\">\r\n");
-      out.write("                                            <div class=\"input-group\">\r\n");
-      out.write("                                        <input type=\"date\" id=\"date\" name=\"duedate\">\r\n");
-      out.write("                                         \r\n");
-      out.write("                                            </div>\r\n");
-      out.write("                                        </div>\r\n");
-      out.write("                             </div>\r\n");
-      out.write("                                 \r\n");
-      out.write("                                   \r\n");
-      out.write("                                   \r\n");
-      out.write("                             <div class=\"form-group\">\r\n");
-      out.write("                                 <input type=\"file\" name=\"file\" id=\"file\"/>\r\n");
-      out.write("                             </div>\r\n");
-      out.write("                  \r\n");
-      out.write("        \r\n");
-      out.write("                             <div class=\"form-group\"> \r\n");
-      out.write("                                <input type=\"submit\" value=\"Submit\" name=\"submit\" id=\"submit\">\r\n");
-      out.write("                             </div>\r\n");
-      out.write("                             \r\n");
-      out.write("                             <div class=\"back\">\r\n");
-      out.write("                                 <a href=\"view assignment.jsp\" style=\"text-align: left;\">Back</a>\r\n");
-      out.write("                             </div>\r\n");
-      out.write("                                \r\n");
-      out.write("                         </form>\r\n");
-      out.write("                     </div>\r\n");
-      out.write("                 </div>\r\n");
-      out.write("             </div>\r\n");
-      out.write("         </div>\r\n");
-      out.write("     </div>\r\n");
-      out.write("  \r\n");
-      out.write("     \r\n");
+      out.write("                         \r\n");
+      out.write("                               <tr>\r\n");
+      out.write("                                   <td style=\"text-align: center\">");
+      out.print( rs.getString("c.courseName") );
+      out.write("</td>\r\n");
+      out.write("                                   <td style=\"text-align: center\">");
+      out.print( rs.getString("a.title") );
+      out.write("</td>\r\n");
+      out.write("                                   <td style=\"text-align: center\">");
+      out.print( rs.getString("a.added_date") );
+      out.write("</td>\r\n");
+      out.write("                                   <td style=\"text-align: center\">");
+      out.print( rs.getString("a.duedate") );
+      out.write("</td>\r\n");
+      out.write("                                   <td style=\"text-align: center\"><a href=\"DownloadAssignment?fileName=");
+      out.print(rs.getString("a.filename"));
+      out.write("\">Download</a></td>\r\n");
+      out.write("                                   <td style=\"text-align: center\"><a href=\"Lecturer_UpdateAssignment.jsp?id=");
+      out.print(id );
+      out.write("\">Edit</a></td>\r\n");
+      out.write("                                   <td style=\"text-align: center\"><a href=\"Lecturer_DeleteAssignment.jsp?id=");
+      out.print(id );
+      out.write("\">Delete</a></td>\r\n");
+      out.write("                               </tr>\r\n");
+      out.write("                                ");
+ } 
       out.write("\r\n");
-      out.write("\r\n");
+      out.write("                                 </tbody>\r\n");
+      out.write("                              \r\n");
+      out.write("                            \r\n");
+      out.write("                         \r\n");
+      out.write("                      \r\n");
+      out.write("                   </table>\r\n");
+      out.write("               </div>  \r\n");
+      out.write("                               </div>\r\n");
+      out.write("           </div>\r\n");
+      out.write(" </body>\r\n");
+      out.write(" \r\n");
+      out.write(" \r\n");
       out.write("\r\n");
       out.write("</html>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
