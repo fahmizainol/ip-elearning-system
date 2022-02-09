@@ -54,8 +54,29 @@
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
-                   
                     <tbody>
+
+                        <c:forEach var="c" items="${course}">
+                        <form name="form" action="CourseStud" method="get">
+                            <tr>
+                            <input type="hidden" name="courseID" value="<c:out value='${c.id}' />"/>
+                            <input type="hidden" name="courseCode" value="<c:out value='${c.code}' />"/>
+                            <input type="hidden" name="courseName" value="<c:out value='${c.courseN}' />"/>
+                            <input type="hidden" name="lecturer" value="<c:out value='${c.lecturer}' />"/> 
+                            <input type="hidden" name="action" value="register"/>
+                            <td><c:out value="${c.id}" /></td>
+                            <td><c:out value="${c.code}" /></td>
+                            <td><c:out value="${c.courseN}" /></td>
+                            <td><c:out value="${c.lecturer}" /></td>
+                            <td><button type="submit" name="drop" >Drop</button></td>
+
+                            </tr>
+                        </form>
+
+                    </c:forEach>
+
+                    </tbody>
+<!--                    <tbody>
                     <%
 
                         Connection con;
@@ -65,7 +86,7 @@
                             Class.forName("com.mysql.jdbc.Driver");
                             con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root", "");
 //                               String query = "select * from assignment";
-                            String query = "select * from studcourse ";
+                            String query = "select * from studcourse  ";
                             pst = con.prepareStatement(query);
                             rs = pst.executeQuery();
 
@@ -86,51 +107,7 @@
                         } catch (Exception e) {
                             e.getStackTrace();
                         }%>
-                    </tbody>
-
-                </table>
-            </div>
-
-
-            <div class="content2">
-                <h1>List of course </h1>
-                <br>
-                <br>
-                <table class="table table-striped table-light border-light">
-                    <thead>
-                        <tr class="Tab1">
-                            <th scope="col">No.</th>
-                            <th scope="col">Course Code</th>
-                            <th scope="col">Course Title</th>
-                            <th scope="col">No. Of Students</th>
-                            <th scope="col">Lecturer</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <c:forEach var="c" items="${listCourse}">
-                        <form name="form" action="CourseStud" method="get">
-                            <tr>
-                            <input type="hidden" name="courseID" value="<c:out value='${c.id}' />"/>
-                            <input type="hidden" name="courseCode" value="<c:out value='${c.code}' />"/>
-                            <input type="hidden" name="courseName" value="<c:out value='${c.courseName}' />"/>
-                            <input type="hidden" name="studentCount" value="<c:out value='${c.studentCount}' />"/>
-                            <input type="hidden" name="lecturer" value="<c:out value='${c.lecturerUsername}' />"/> 
-                            <input type="hidden" name="action" value="register"/>
-                            <td scope="row"><c:out value="${c.id}" /></td>
-                            <td><c:out value="${c.code}" /></td>
-                            <td><c:out value="${c.courseName}" /></td>
-                            <td><c:out value="${c.studentCount}" /></td>
-                            <td><c:out value="${c.lecturerUsername}" /></td>
-                            <td><button type="submit" name="register" >Register</button></td>
-
-                            </tr>
-                        </form>
-
-                    </c:forEach>
-
-                    </tbody>
+                    </tbody>-->
 
                 </table>
             </div>

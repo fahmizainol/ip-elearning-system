@@ -1,51 +1,18 @@
-<%@page import="DBUtility.DBConnection"%>
 <%@page import="java.sql.*" %>
 <% Class.forName("com.mysql.jdbc.Driver");%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
      <%@include file="layout_header.jsp" %>
-     <style>
-         .button{
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            float: right;
-
-          }
-     </style>
  <body>
      <%@include file="layout_navbar.jsp" %>
      <%@include file="layout_sidebar.jsp" %>
      
       <div class="content">
-          <div class="content1">
-            <div class="text">
-                <h2>On-going Assignment:</h2>
-                <p>Good students always submit their assignment on time :)</p>
-
-       <!--          <div style="text-align: right;"><img src="books.png" alt="Sunflower"></div>-->
-            </div>
-               
-           <div class="col-md-8">
-               
+      
+           <div class="col-md-5">
                <div class="panel-body">
-                   
-                  
- 
-                   
-                   
                    <table id="tbl-asgn" class="table table-responsive table-bordered" cellpadding="0" width="100%">
                       
                        <thead>
@@ -53,26 +20,24 @@
                                
                                <th style="text-align: center">Course</th>
                                <th style="text-align: center">Title</th>
-                               
                                <th style="text-align: center">Due Date</th>
-                               <th style="text-align: center">Instructions & Materials</th>
-                               <th style="text-align: center">Submission</th>
-                               <th style="text-align: center">Submission</th>
+                               <th style="text-align: center">Submit Assignment</th>
                            </tr>
                            
                        <tbody>
                           
                            <%
                                
-                               Connection con = null;
-                               PreparedStatement ps = null;
-                               ResultSet rs = null;
+                               Connection con;
+                               PreparedStatement pst;
+                               ResultSet rs;
                                
-                               con = DBConnection.openConnection();
-                              
-                               String query = "select a.id,a.title,a.duedate,a.filename,a.path,a.added_date, c.courseName from assignment a JOIN courses c ON a.course = c.id";
-                               ps = con.prepareStatement(query);
-                               rs = ps.executeQuery();
+                               Class.forName("com.mysql.jdbc.Driver");
+                               con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root","");
+//                               String query = "select * from assignment";
+                                 String query = "select a.id,a.title,a.duedate, c.courseName from assignment a JOIN courses c ON a.course = c.id";
+                               Statement st = con.createStatement();
+                               rs = st.executeQuery(query);
                                
                                while(rs.next()){
                                    String id = rs.getString("a.id");
@@ -81,13 +46,11 @@
                                
                          
                                <tr>
-                                   <td style="text-align: center"><%= rs.getString("c.courseName") %></td>
-                                   <td style="text-align: center"><%= rs.getString("a.title") %></td>
-                                   
-                                   <td style="text-align: center"><%= rs.getString("a.duedate") %></td>
-                                   <td style="text-align: center"><a href="DownloadAssignment?fileName=<%=rs.getString("a.filename")%>">Download</a></td>
-                                   <td style="text-align: center"><a href="#">Add</a></td>
-                                   <td style="text-align: center"><a href="#">Delete</a></td>
+                                   <td><%= rs.getString("c.courseName") %></td>
+                                   <td><%= rs.getString("a.title") %></td>
+                                   <td><%= rs.getString("a.duedate") %></td>
+                                   <td style="text-align: center"><a href="#RidwanPart">Submit</a></td>
+
                                </tr>
                                 <% } %>
                                  </tbody>

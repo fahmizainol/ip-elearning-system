@@ -3,43 +3,136 @@
     Created on : Dec 31, 2021, 4:47:07 PM
     Author     : Fahmi ZB 
 --%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
-     <%@include file="layout_header.jsp" %>
- <body>
-     <%@include file="layout_navbar.jsp" %>
-     <%@include file="layout_sidebar.jsp" %>
+    <%@include file="layout_header.jsp" %>
+    <style>
+
+        .Tab1, th{
+            background: #DFA6FA;
+            border-radius: 20px;
+        }
+        .Cname2{
+            text-align: center;
+            background-color: gray;
+
+        }
+
+    </style>
+    <body>
+        <%@include file="layout_navbar.jsp" %>
+        <%@include file="layout_sidebar.jsp" %>
         <div class="content">
             <div class="content1">
                 <div class="text">
-                    <h2>Choose your course</h2>
+                    <h2>Course Registration</h2>
 
 
                 </div>
 
             </div>
             <div class="content2">
-                <h1>List of course available </h1>
+                <h1>List of course </h1>
                 <br>
                 <br>
-                <table class="tableCo" style="width:100%">
-                    <tr class="Cname1">
-                        <th>No. </th>
-                        <th>Course Code </th>
-                        <th>Course Name </th>
-                        <th>Section</th>
-                        <th>Lecturer </th>
+                <table class="table table-striped table-light border-light">
+                    <thead>
+                        <tr class="Tab1">
+                            <th scope="col">No.</th>
+                            <th scope="col">Course Code</th>
+                            <th scope="col">Course Title</th>
+                            <th scope="col">Lecturer</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                   
+                    <tbody>
+                    <%
 
+                        Connection con;
+                        PreparedStatement pst;
+                        ResultSet rs;
+                        try {
+                            Class.forName("com.mysql.jdbc.Driver");
+                            con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root", "");
+//                               String query = "select * from assignment";
+                            String query = "select * from studcourse ";
+                            pst = con.prepareStatement(query);
+                            rs = pst.executeQuery();
 
-                    </tr>
-
-                    <tr class="Cname2" >
+                            if (rs.next() == false) {
+                                out.println("<tr> <td>No Records <td>");
+                            } else {
+                                do {
+                    %>
+                    
+                        <td><%= rs.getString(1)%></td>
+                        <td><%= rs.getString(2)%></td>
+                        <td><%= rs.getString(3)%></td>
+                        <td><%= rs.getString(5)%></td>
                         
-
-
                     </tr>
-   </body>
+                    <%} while (rs.next());
+                            }
+                        } catch (Exception e) {
+                            e.getStackTrace();
+                        }%>
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <div class="content2">
+                <h1>List of course </h1>
+                <br>
+                <br>
+                <table class="table table-striped table-light border-light">
+                    <thead>
+                        <tr class="Tab1">
+                            <th scope="col">No.</th>
+                            <th scope="col">Course Code</th>
+                            <th scope="col">Course Title</th>
+                            <th scope="col">No. Of Students</th>
+                            <th scope="col">Lecturer</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <c:forEach var="c" items="${listCourse}">
+                        <form name="form" action="CourseStud" method="get">
+                            <tr>
+                            <input type="hidden" name="courseID" value="<c:out value='${c.id}' />"/>
+                            <input type="hidden" name="courseCode" value="<c:out value='${c.code}' />"/>
+                            <input type="hidden" name="courseName" value="<c:out value='${c.courseName}' />"/>
+                            <input type="hidden" name="studentCount" value="<c:out value='${c.studentCount}' />"/>
+                            <input type="hidden" name="lecturer" value="<c:out value='${c.lecturerUsername}' />"/> 
+                            <input type="hidden" name="action" value="register"/>
+                            <td scope="row"><c:out value="${c.id}" /></td>
+                            <td><c:out value="${c.code}" /></td>
+                            <td><c:out value="${c.courseName}" /></td>
+                            <td><c:out value="${c.studentCount}" /></td>
+                            <td><c:out value="${c.lecturerUsername}" /></td>
+                            <td><button type="submit" name="register" >Register</button></td>
+
+                            </tr>
+                        </form>
+
+                    </c:forEach>
+
+                    </tbody>
+
+                </table>
+            </div>
+    </body>
 </html>

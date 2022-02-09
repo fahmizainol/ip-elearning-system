@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import Model.Course;
+import Model.StudCourse;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -26,8 +27,10 @@ public class CourseDAO {
     String jdbcDriver = "com.mysql.jdbc.Driver";
     Connection conn = null;
     private static final String SELECT_ALL_COURSES = "select * from courses";
+    private static final String SELECT_ALL_COURSES_STUD = "select * from studcourse";
     private static final String UPDATE_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
     private static final String WITHDRAW_COURSE=  "UPDATE courses SET code=?, courseName=?, studentCount=?, lecturer=? WHERE id=?";
+    private static final String REGISTER_COURSE = "insert into studcourse( code, courseN, studentUN, lecturer) values (?,?,?,?)";
                
 
     /**
@@ -69,6 +72,26 @@ public class CourseDAO {
         }
         return courses;
     }
+    
+    public List<StudCourse> selectAllCoursesStud() throws ClassNotFoundException, SQLException{
+                        List<StudCourse> course = new ArrayList<>();
+        try(Connection conn = getConnection();
+                PreparedStatement pS = conn.prepareStatement(SELECT_ALL_COURSES_STUD);){
+            System.out.println(pS);
+            ResultSet rs = pS.executeQuery();
+            
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String name = rs.getString("code");
+                String cn = rs.getString("courseN");
+                String studname = rs.getString("studentUN");
+                String lecturer = rs.getString("lecturer");
+                course.add(new StudCourse(id,name,cn,studname,lecturer));
+                
+            } 
+        }
+        return course;
+    }
 
     public void updateCourse(Course course) throws SQLException{
         try{
@@ -100,7 +123,23 @@ public class CourseDAO {
             
         }
     }
+    
+    public void RegisterCourse(StudCourse studc){
+        try {
+            conn = DBConnection.openConnection();
+            PreparedStatement pS = conn.prepareStatement(REGISTER_COURSE);
+            
+            pS.setString(1, studc.getCode());
+            pS.setString(2, studc.getCourseN());
+            pS.setString(3, studc.getStudentUN());
+            pS.setString(4, studc.getLecturer());
+            pS.executeUpdate();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+}
 }
 
 
