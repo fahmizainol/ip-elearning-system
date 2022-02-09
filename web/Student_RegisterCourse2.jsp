@@ -76,38 +76,7 @@
                     </c:forEach>
 
                     </tbody>
-<!--                    <tbody>
-                    <%
 
-                        Connection con;
-                        PreparedStatement pst;
-                        ResultSet rs;
-                        try {
-                            Class.forName("com.mysql.jdbc.Driver");
-                            con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root", "");
-//                               String query = "select * from assignment";
-                            String query = "select * from studcourse  ";
-                            pst = con.prepareStatement(query);
-                            rs = pst.executeQuery();
-
-                            if (rs.next() == false) {
-                                out.println("<tr> <td>No Records <td>");
-                            } else {
-                                do {
-                    %>
-                    
-                        <td><%= rs.getString(1)%></td>
-                        <td><%= rs.getString(2)%></td>
-                        <td><%= rs.getString(3)%></td>
-                        <td><%= rs.getString(5)%></td>
-                        
-                    </tr>
-                    <%} while (rs.next());
-                            }
-                        } catch (Exception e) {
-                            e.getStackTrace();
-                        }%>
-                    </tbody>-->
 
                 </table>
             </div>

@@ -3,10 +3,12 @@
     Created on : Dec 31, 2021, 4:47:07 PM
     Author     : Fahmi ZB 
 --%>
+<%@page import="Model.Student"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="java.sql.Connection"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -58,6 +60,7 @@
                     <tbody>
                     <%
 
+                        Student student = (Student)request.getSession();
                         Connection con;
                         PreparedStatement pst;
                         ResultSet rs;
@@ -65,8 +68,9 @@
                             Class.forName("com.mysql.jdbc.Driver");
                             con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root", "");
 //                               String query = "select * from assignment";
-                            String query = "select * from studcourse ";
+                            String query = "select * from studcourse where studentUN = ? ";
                             pst = con.prepareStatement(query);
+                            pst.setString(1, student.getUsername() );
                             rs = pst.executeQuery();
 
                             if (rs.next() == false) {
@@ -92,7 +96,7 @@
             </div>
 
 
-            <div class="content2">
+            <div class="content3">
                 <h1>List of course </h1>
                 <br>
                 <br>
