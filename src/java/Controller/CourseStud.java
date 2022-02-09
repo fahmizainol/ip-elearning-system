@@ -78,7 +78,7 @@ public class CourseStud extends HttpServlet {
             coursedb = new CourseDAO();
             List<StudCourse> listCourse = coursedb.selectAllCoursesStud();
             session.setAttribute("course", listCourse); 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Student_RegisterCourse2.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Student_Home.jsp");
             dispatcher.forward(request, response);
             
         } catch(Exception e){

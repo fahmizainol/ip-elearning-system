@@ -3,6 +3,11 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.Connection;
+import Model.Student;
 
 public final class Student_005fHome_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -51,9 +56,14 @@ public final class Student_005fHome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html lang=\"en\">\r\n");
-      out.write("     ");
+      out.write("    ");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<head>\r\n");
@@ -68,41 +78,6 @@ public final class Student_005fHome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("    <title>Document</title>\r\n");
       out.write("</head>\r\n");
       out.write("\r\n");
-      out.write(" <body>\r\n");
-      out.write("     ");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!--INCLUDE IN EACH JSP FILE-->\n");
-      out.write("<head>\n");
-      out.write("    <link rel=\"stylesheet\" href=\"css/Dashboard1.css\" />\n");
-      out.write("</head>\n");
-      out.write("<nav class=\"navbar\">\n");
-      out.write("  <!-- LOGO -->\n");
-      out.write("  <div class=\"logo\">E-learning</div>\n");
-      out.write("  <!-- NAVIGATION MENU -->\n");
-      out.write("  <ul class=\"nav-links\">\n");
-      out.write("    <!-- NAVIGATION MENUS -->\n");
-      out.write("    <div class=\"menu\">\n");
-      out.write("<!--           <li><a href=\"/\">Contacts</a></li>-->\n");
-      out.write("         <li class=\"services\">\n");
-      out.write("        <a href=\"#\">Profile</a>\n");
-      out.write("        <!-- DROPDOWN MENU -->\n");
-      out.write("        <ul class=\"dropdown\">\n");
-      out.write("          <li><a href=\"Student_Profile.jsp\">My Profile </a></li>\n");
-      out.write("          <li><a href=\"/\">Settings</a></li>  \n");
-      out.write("        </ul>\n");
-      out.write("\n");
-      out.write("      </li>\n");
-      out.write("      <li><a href=\"/\">Contacts</a></li>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("    </div>\n");
-      out.write("  </ul>\n");
-      out.write("</nav>");
-      out.write("\r\n");
-      out.write("     ");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!--INCLUDE IN EACH JSP FILE-->\r\n");
@@ -133,34 +108,67 @@ public final class Student_005fHome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("        <div class=\"content\">\r\n");
       out.write("            <div class=\"content1\">\r\n");
       out.write("                <div class=\"text\">\r\n");
-      out.write("                    <h2>Choose your course</h2>\r\n");
+      out.write("                    <h2> SEMESTER 1-2021/2022</h2>\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("                </div>\r\n");
       out.write("\r\n");
       out.write("            </div>\r\n");
-      out.write("            <div class=\"register\">\r\n");
-      out.write("                <h1>List of course available </h1>\r\n");
+      out.write("            <br>\r\n");
+      out.write("                <h1>Course Overview</h1>\r\n");
       out.write("                <br>\r\n");
       out.write("                <br>\r\n");
-      out.write("                <table class=\"tableCo\" style=\"width:100%\">\r\n");
-      out.write("                    <tr class=\"Cname1\">\r\n");
-      out.write("                        <th>No. </th>\r\n");
-      out.write("                        <th>Course Code </th>\r\n");
-      out.write("                        <th>Course Name </th>\r\n");
-      out.write("                        <th>Section</th>\r\n");
-      out.write("                        <th>Lecturer </th>\r\n");
+      out.write("                <div class=\"card \" style=\"width: 20rem; \">\r\n");
+      out.write("                    <div class=\"card-body\" >\r\n");
+      out.write("                        ");
+
+
+                            Student student = (Student) request.getSession().getAttribute("student");
+                            Connection con;
+                            PreparedStatement pst;
+                            ResultSet rs;
+                            try {
+                                Class.forName("com.mysql.jdbc.Driver");
+                                con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root", "");
+                                //                               String query = "select * from assignment";
+                                String query = "select * from studcourse where studentUN = ? ";
+                                pst = con.prepareStatement(query);
+                                pst.setString(1, student.getUsername());
+                                rs = pst.executeQuery();
+
+                                if (rs.next() == false) {
+                                    out.println("<h2>No Course Take </h2>");
+                                } else {
+                                    do {
+                                        
+                        
+      out.write("\r\n");
+      out.write("                        <h5 class=\"card-title\">");
+      out.print( rs.getString(2));
+      out.write("</h5>\r\n");
+      out.write("                        <p class=\"card-text\">");
+      out.print( rs.getString(3));
+      out.write("</p>\r\n");
+      out.write("                        <a href=\"#\" class=\"btn btn-primary\">View</a>\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                    </tr>\r\n");
+      out.write("                        ");
+} while (rs.next());
+                                }
+                            } catch (Exception e) {
+                                e.getStackTrace();
+                            }
       out.write("\r\n");
-      out.write("                    <tr class=\"Cname2\" >\r\n");
-      out.write("                        \r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                    </tr>\r\n");
-      out.write("   </body>\r\n");
-      out.write("</html>");
+      out.write("                    </div>\r\n");
+      out.write("                    \r\n");
+      out.write("                </div>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                </body>\r\n");
+      out.write("                </html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
