@@ -1,0 +1,93 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import Model.Student;
+import Model.Submission;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+
+/**
+ *
+ * @author Rejwan
+ */
+public class SubmissionDAO {
+
+    String url = "jdbc:mysql://localhost:3306/elearning";
+    String user = "root";
+    String password = "";
+    String jdbcDriver = "com.mysql.jdbc.Driver";
+
+    private static final String UPDATE_SUBMISSION_GRADE_WHERE_ASSIGNMENT_ID = "UPDATE submission SET grade=?, status=?, submissionTime=? WHERE assignmentID=?";
+    private static final String SELECT_SUBMISSION_BY_ASSIGNMENT_ID = "select * from submission where assignmentID=?";
+
+    /**
+     *
+     */
+    public SubmissionDAO() {
+
+    }
+
+    protected Connection getConnection() throws ClassNotFoundException {
+        Connection conn = null;
+        try {
+            Class.forName(jdbcDriver);
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    public Submission selectSubmission(int assgnId) throws SQLException, ClassNotFoundException {
+        Submission submission = null;
+        try (Connection conn = getConnection();
+                PreparedStatement pS = conn.prepareStatement(SELECT_SUBMISSION_BY_ASSIGNMENT_ID);) {
+            pS.setInt(1, assgnId);
+            System.out.println(pS);
+            ResultSet rs = pS.executeQuery();
+
+            while (rs.next()) {
+//                status	submitted           grade        file	  assignmentID
+                int grade = rs.getInt("grade");
+                String submitted = rs.getString("submittedTime");
+                String status = rs.getString("status");
+                Blob fileBlob = rs.getBlob("file");
+                int myblobLength = (int) fileBlob.length();
+                byte[] fileBytes = fileBlob.getBytes(1, myblobLength);
+                String file = Base64.getEncoder().encodeToString(fileBytes);
+                fileBlob.free();
+                int assignmentID = rs.getInt("assignmentID");
+//                String status, int assignmentID, String submissionTime, int grade, String file
+                submission = new Submission(status, assignmentID, submitted, grade, file);
+            }
+        }
+        return submission;
+    }
+
+    public void updateSubmission(Submission submission) throws SQLException {
+        try {
+            Connection conn = getConnection();
+            //                "UPDATE assignment SET grade=?, status=?, submissionTime=? WHERE assignmentID=?";
+            PreparedStatement pS = conn.prepareStatement(UPDATE_SUBMISSION_GRADE_WHERE_ASSIGNMENT_ID);
+            pS.setInt(1, submission.getGrade());
+            pS.setString(2, submission.getStatus());
+            pS.setString(3, submission.getSubmissionTime());
+            pS.executeUpdate();
+
+        } catch (Exception e) {
+
+        }
+
+    }
+}
