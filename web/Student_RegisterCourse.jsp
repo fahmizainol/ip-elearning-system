@@ -43,9 +43,10 @@
 
             </div>
             <div class="content2">
-                <h1>List of course </h1>
                 <br>
+                <p><b>Your Course Pick </b></p>
                 <br>
+                
                 <table class="table table-striped table-light border-light">
                     <thead>
                         <tr class="Tab1">
@@ -100,8 +101,9 @@
 
 
             <div class="content3">
-                <h1>List of course </h1>
                 <br>
+                <p><b>List of course </b></p>
+                
                 <br>
                 <table class="table table-striped table-light border-light">
                     <thead>
