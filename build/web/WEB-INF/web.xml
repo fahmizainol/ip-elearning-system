@@ -28,6 +28,14 @@
         <servlet-name>SubmitAssignment</servlet-name>
         <servlet-class>Controller.SubmitAssignment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GradeAssignment</servlet-name>
+        <servlet-class>Controller.GradeAssignment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GradeAssignment2</servlet-name>
+        <servlet-class>Controller.GradeAssignment2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>SubmitAssignment</servlet-name>
         <url-pattern>/SubmitAssignment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GradeAssignment</servlet-name>
+        <url-pattern>/GradeAssignment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GradeAssignment2</servlet-name>
+        <url-pattern>/GradeAssignment2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
