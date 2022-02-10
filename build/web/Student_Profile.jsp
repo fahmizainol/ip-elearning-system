@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="phone" class="col-sm-2 col-form-label">Email</label>
+                <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                 <div class="col-sm-5">
                   <input type="text" name="phone" class="form-control" id="phone"  value='<jsp:getProperty name="student" property="phone" />'>
                 </div>
