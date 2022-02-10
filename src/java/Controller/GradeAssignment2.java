@@ -5,28 +5,38 @@
  */
 package Controller;
 
-import DAO.AssignmentDAO;
 import DAO.SubmissionDAO;
-import Model.Assignment;
-import Model.Course;
 import Model.Submission;
-import java.sql.SQLException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
-
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Rejwan
  */
-@WebServlet(name = "SubmitAssignment", urlPatterns = {"/SubmitAssignment"})
-public class SubmitAssignment extends HttpServlet {
+@WebServlet(name = "GradeAssignment", urlPatterns = {"/GradeAssignment"})
+
+public class GradeAssignment2 extends HttpServlet {
+
+    public static final String UPLOAD_DIR = "resources";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,11 +47,6 @@ public class SubmitAssignment extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -52,31 +57,27 @@ public class SubmitAssignment extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int assignmentId = Integer.parseInt((String) request.getParameter("assignmentId"));
-        Assignment assignment = null;
+        String assignmentId = request.getParameter("id");
+        log(assignmentId);
+        int assignmentIdInt = Integer.parseInt(assignmentId);
+
+        SubmissionDAO sd = new SubmissionDAO();
         Submission submission = null;
 
-        AssignmentDAO ad = new AssignmentDAO();
-        SubmissionDAO sd = new SubmissionDAO();
+        String file = request.getParameter("file");
+        int grade = Integer.parseInt((String) request.getParameter("grade"));
+        String submissionTime = request.getParameter("submissionTime");
 
+        submission = new Submission("Graded", assignmentIdInt, submissionTime, grade, file, "true");
         try {
-            log(assignmentId + " ");
-            assignment = ad.selectAssignment(assignmentId);
-            submission = sd.selectSubmission(assignmentId);
-            log(submission.getStatus());
-
-        } catch (SQLException | ClassNotFoundException | NullPointerException ex) {
-            log (ex.getMessage() );
-            log("still no?");
-//                public Submission(String status, int assignmentID, String submissionTime, int grade, String file, Boolean empty) {
-            submission = new Submission("Not submitted", assignmentId, "Not submitted yet", -1, "Not submitted yet", "true");
+            sd.updateSubmission( submission );
+        } catch (SQLException ex) {
+            Logger.getLogger(GradeAssignment2.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.setAttribute("assignment", assignment);
-        request.setAttribute("submission", submission);
 
-        RequestDispatcher dispatch = request.getRequestDispatcher("Student_SubmitAssignment.jsp");
+        RequestDispatcher dispatch = request.getRequestDispatcher("GradeAssignment?assignmentId=" + assignmentId);
         dispatch.forward(request, response);
 
     }
@@ -89,12 +90,6 @@ public class SubmitAssignment extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
     /**
      * Returns a short description of the servlet.
      *
