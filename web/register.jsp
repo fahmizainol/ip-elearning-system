@@ -170,62 +170,7 @@
             </div>
 
 
-            <%
-//                if (request.getParameter("btn_register") != null) {
-//                    String firstname, lastname, username, password, role;
-//
-//                    firstname = request.getParameter("txt_firstname");
-//                    lastname = request.getParameter("txt_lastname");
-//                    username = request.getParameter("txt_username");
-//                    password = request.getParameter("txt_password");
-//                    role = request.getParameter("txt_role");
-//
-//                    String driver = "com.mysql.jdbc.Driver";
-//                    String dburl = "jdbc:mysql://localhost:3306/userdata";
-//                    String dbuname = "root";
-//                    String dbpwd = "";
-//
-//                    try {
-//                        Class.forName(driver);
-//                       Connection con=DriverManager.getConnection(dburl,dbuname,dbpwd); 
-//            
-//            PreparedStatement pstmt=null; 
-//            
-//            pstmt=con.prepareStatement("SELECT * FROM tbl_user WHERE username=? "); 
-//            pstmt.setString(1,username); 
-//            ResultSet rs=pstmt.executeQuery(); 
-//           
-//            if(rs.next())
-//            {
-//                String checkUsername=rs.getString("username");
-//                
-//                if(username.equals(checkUsername))    
-//                {
-//                    request.setAttribute("errorMsg", "sorry email already exist"); 
-//                }
-//            }
-//            else
-//            {
-//                pstmt=con.prepareStatement("INSERT INTO tbl_user(firstname,lastname,username,password,role) VALUES(?,?,?,?,?)"); 
-//                pstmt.setString(1,firstname);
-//                pstmt.setString(2,lastname);
-//                pstmt.setString(3,username);           
-//                pstmt.setString(4,password);
-//                pstmt.setString(5,role);
-//                pstmt.executeUpdate(); 
-//                
-//                request.setAttribute("successMsg", "register successfully please login account"); 
-//            }
-//            
-//            pstmt.close();  
-//            con.close(); 
-//        }
-//        catch(Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//    }
-%>
+           
             
 
 
