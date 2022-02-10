@@ -30,6 +30,7 @@ public class SubmissionDAO {
 
     private static final String UPDATE_SUBMISSION_GRADE_WHERE_ASSIGNMENT_ID = "UPDATE submission SET grade=?, status=?, submissionTime=? WHERE assignmentID=?";
     private static final String SELECT_SUBMISSION_BY_ASSIGNMENT_ID = "select * from submission where assignmentID=?";
+    private static final String INSERT_SUBMISSION = "INSERT INTO submission ( status, grade, file, submissionTime, assignmentID) values(?,?,?,?,?)";
 
     /**
      *
@@ -58,18 +59,14 @@ public class SubmissionDAO {
             ResultSet rs = pS.executeQuery();
 
             while (rs.next()) {
-//                status	submitted           grade        file	  assignmentID
+//          String status, int assignmentID, String submissionTime, int grade, String file, String empty
                 int grade = rs.getInt("grade");
-                String submitted = rs.getString("submittedTime");
+                String submitted = rs.getString("submissionTime");
                 String status = rs.getString("status");
-                Blob fileBlob = rs.getBlob("file");
-                int myblobLength = (int) fileBlob.length();
-                byte[] fileBytes = fileBlob.getBytes(1, myblobLength);
-                String file = Base64.getEncoder().encodeToString(fileBytes);
-                fileBlob.free();
+                String file = rs.getString("file");
                 int assignmentID = rs.getInt("assignmentID");
 //                String status, int assignmentID, String submissionTime, int grade, String file
-                submission = new Submission(status, assignmentID, submitted, grade, file);
+                submission = new Submission(status, assignmentID, submitted, grade, file, "false");
             }
         }
         return submission;
@@ -78,11 +75,30 @@ public class SubmissionDAO {
     public void updateSubmission(Submission submission) throws SQLException {
         try {
             Connection conn = getConnection();
-            //                "UPDATE assignment SET grade=?, status=?, submissionTime=? WHERE assignmentID=?";
+            //         "UPDATE submission SET grade=?, status=?, submissionTime=? WHERE assignmentID=?"
             PreparedStatement pS = conn.prepareStatement(UPDATE_SUBMISSION_GRADE_WHERE_ASSIGNMENT_ID);
             pS.setInt(1, submission.getGrade());
             pS.setString(2, submission.getStatus());
             pS.setString(3, submission.getSubmissionTime());
+             pS.setInt(4, submission.getAssignmentID() );
+            pS.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println( e.getMessage() );
+        }
+
+    }
+
+    public void addSubmission(Submission submission) throws SQLException {
+        try {
+            Connection conn = getConnection();
+//            status, grade, file, submissionTime, assignmentID
+            PreparedStatement pS = conn.prepareStatement(INSERT_SUBMISSION);
+            pS.setString(1, submission.getStatus());
+            pS.setInt(2, submission.getGrade());
+            pS.setString(3, submission.getFile());
+            pS.setString(4, submission.getSubmissionTime()  );
+            pS.setInt(5, submission.getAssignmentID());
             pS.executeUpdate();
 
         } catch (Exception e) {
@@ -90,4 +106,5 @@ public class SubmissionDAO {
         }
 
     }
+
 }

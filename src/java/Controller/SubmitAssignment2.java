@@ -8,7 +8,9 @@ package Controller;
 import static Controller.DownloadAssignment.UPLOAD_DIR;
 import static Controller.DownloadAssignment.fileName;
 import DAO.AssignmentDAO;
+import DAO.SubmissionDAO;
 import Model.Assignment;
+import Model.Submission;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -18,6 +20,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -59,7 +66,6 @@ public class SubmitAssignment2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
         // Create path components to save the file    
         Part filePart = request.getPart("file");
@@ -83,7 +89,6 @@ public class SubmitAssignment2 extends HttpServlet {
             while ((read = filecontent.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
             }
-            writer.println("New file " + fileName + " created at " + filePath);
         } catch (FileNotFoundException fne) {
             log(fne.getMessage());
         } finally {
@@ -93,10 +98,25 @@ public class SubmitAssignment2 extends HttpServlet {
             if (filecontent != null) {
                 filecontent.close();
             }
-            if (writer != null) {
-                writer.close();
-            }
+
         }
+        String assignmentId = request.getParameter("id");
+        int assignmentIdInt = Integer.parseInt(assignmentId);
+        SubmissionDAO sd = new SubmissionDAO();
+        Submission submission = null;
+        //                public Submission(String status, int assignmentID, String submissionTime, int grade, String file, Boolean empty) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String date = df.format(new Date());
+        log("View file name" + UPLOAD_DIR + File.separator + fileName);
+        submission = new Submission("Submitted", assignmentIdInt, date, -1, UPLOAD_DIR + File.separator + fileName, "false");
+        try {
+            sd.addSubmission(submission);
+        } catch (SQLException ex) {
+            Logger.getLogger(SubmitAssignment2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        RequestDispatcher dispatch = request.getRequestDispatcher("SubmitAssignment?assignmentId=" + assignmentId);
+        dispatch.forward(request, response);
+
     }
 
     private String getFileName(final Part part) {

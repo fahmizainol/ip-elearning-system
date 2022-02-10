@@ -18,16 +18,26 @@ public class Submission implements Serializable {
     private String submissionTime;
     private int grade;
     private String file;
+    private String empty;
+
+    public String getEmpty() {
+        return empty;
+    }
+
+    public void setEmpty(String empty) {
+        this.empty = empty;
+    }
 
     public Submission() {
     }
 
-    public Submission(String status, int assignmentID, String submissionTime, int grade, String file) {
+    public Submission(String status, int assignmentID, String submissionTime, int grade, String file, String empty ) {
         this.status = status;
         this.assignmentID = assignmentID;
         this.submissionTime = submissionTime;
         this.grade = grade;
         this.file = file;
+        this.empty = empty;
     }
 
     public String getStatus() {

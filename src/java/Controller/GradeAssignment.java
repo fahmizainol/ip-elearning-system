@@ -8,12 +8,10 @@ package Controller;
 import DAO.AssignmentDAO;
 import DAO.SubmissionDAO;
 import Model.Assignment;
-import Model.Course;
 import Model.Submission;
-import java.sql.SQLException;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,8 +23,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Rejwan
  */
-@WebServlet(name = "SubmitAssignment", urlPatterns = {"/SubmitAssignment"})
-public class SubmitAssignment extends HttpServlet {
+@WebServlet(name = "GradeAssignment", urlPatterns = {"/GradeAssignment"})
+
+public class GradeAssignment extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,7 +67,7 @@ public class SubmitAssignment extends HttpServlet {
             log(submission.getStatus());
 
         } catch (SQLException | ClassNotFoundException | NullPointerException ex) {
-            log (ex.getMessage() );
+            log(ex.getMessage());
             log("still no?");
 //                public Submission(String status, int assignmentID, String submissionTime, int grade, String file, Boolean empty) {
             submission = new Submission("Not submitted", assignmentId, "Not submitted yet", -1, "Not submitted yet", "true");
@@ -76,7 +75,7 @@ public class SubmitAssignment extends HttpServlet {
         request.setAttribute("assignment", assignment);
         request.setAttribute("submission", submission);
 
-        RequestDispatcher dispatch = request.getRequestDispatcher("Student_SubmitAssignment.jsp");
+        RequestDispatcher dispatch = request.getRequestDispatcher("Lecturer_SubmitGrade.jsp");
         dispatch.forward(request, response);
 
     }
