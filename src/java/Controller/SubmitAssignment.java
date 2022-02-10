@@ -7,11 +7,11 @@ package Controller;
 
 import DAO.AssignmentDAO;
 import Model.Assignment;
+import java.sql.SQLException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -71,7 +71,7 @@ public class SubmitAssignment extends HttpServlet {
             log(assignmentId + " ");
 
             assignment = ad.selectAssignment(assignmentId);
-            log("Now " + assignment.getId() + " " + assignment.getTitle() + " " +  assignment.getPath());
+            log("Now " + assignment.getId() + " " + assignment.getTitle() + " " + assignment.getPath());
 
         } catch (SQLException | ClassNotFoundException ex) {
             log("null okay");
@@ -94,7 +94,7 @@ public class SubmitAssignment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                processRequest(request, response);
     }
 
     /**

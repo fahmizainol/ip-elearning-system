@@ -24,6 +24,10 @@
         <servlet-name>DownloadPdf</servlet-name>
         <servlet-class>Controller.DownloadPdf</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubmitAssignment</servlet-name>
+        <servlet-class>Controller.SubmitAssignment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>DownloadPdf</servlet-name>
         <url-pattern>/DownloadPdf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitAssignment</servlet-name>
+        <url-pattern>/SubmitAssignment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
