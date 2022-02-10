@@ -143,21 +143,7 @@
             <h2 class="text" ><b>E-LEARNING SYSTEM</b></h2><br>
 
 
-            <!--            <form method="POST" action="../loginUser">
-                            <input type="text" name="u_name" placeholder="Username"/>
-                            <input type="password" name="password" placeholder="Password"/>
-                            <select type="text" name="r_id">
-                                <option value="" selected="selected"> Login As</option>
-                                <option value="1"> Teacher</option>
-                                <option value="2">Student</option>
             
-                            </select>     
-                            <input type="submit" name="btn_login" class="login login-submit" value="Login"/>
-                        </form>
-            
-                        <div class="login-help">
-                            <a href="register.jsp"> Register</a>
-                        </div>-->
 
             <form method="get" id="loginform" action="loginUser">
                 <input type="text" name="txt_username" placeholder="Username"/>
@@ -175,69 +161,7 @@
             <div class="login-help">
                 <a href="register.jsp"> Register</a>
             </div>
-            <%-- TODO: Delete this section cuz can be handled by loginUser controller now--%>
-            <%
-                //check condition admin login not back index.jsp(login) page
-//                if (session.getAttribute("teacher_login") != null) {
-//                    response.sendRedirect("teacher_home.jsp");
-//                }
-//
-//                //check condition employee login not back index.jsp(login) page
-//                if (session.getAttribute("student_login") != null) {
-//                    response.sendRedirect("student_home.jsp");
-//                }
-
-                if (request.getParameter("btn_login") != null) {
-                    String username, password;
-                    int role;
-
-                    username = request.getParameter("txt_username");
-                    password = request.getParameter("txt_password");
-                    role = Integer.parseInt(request.getParameter("txt_role"));
-
-                    String driver = "com.mysql.jdbc.Driver";
-                    String url = "jdbc:mysql://localhost:3306/elearning";
-                    String uname = "root";
-                    String pwd = "";
-
-                    try {
-                        Class.forName(driver); //load driver
-                        Connection conn = DriverManager.getConnection(url, uname, pwd);
-
-                        PreparedStatement pstmt = null;
-
-                        pstmt = conn.prepareStatement("SELECT * FROM users WHERE u_name=? AND password=? AND r_id=? ");
-                        pstmt.setString(1, username);
-                        pstmt.setString(2, password);
-                        pstmt.setInt(3, role);
-                        ResultSet rs = pstmt.executeQuery();
-
-                        if (rs.next()) {
-                            String dbemail = rs.getString("u_name");
-                            String dbpassword = rs.getString("password");
-                            int dbrole = rs.getInt("r_id");
-
-                            if (username.equals(dbemail) && password.equals(dbpassword) && (role == dbrole)) {
-                                if (dbrole == 1) {
-                                    session.setAttribute("teacher_login", dbemail);
-                                    response.sendRedirect("CourseServlet");
-                                } else if (dbrole == 2) {
-                                    session.setAttribute("student_login", dbemail);
-                                    response.sendRedirect("student_home.jsp");
-                                    
-                                }
-                            }
-                        } else {
-                            request.setAttribute("errorMsg", "invalid email or password or role");
-                        }
-
-                        pstmt.close();
-                        conn.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            %>
+           
     </body>
 </html>
 
