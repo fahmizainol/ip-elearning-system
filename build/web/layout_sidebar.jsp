@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="css/Dashboard2.css" />
 </head>
  <div id="myDIV" class="sidebar">
-  <a class="btns active" href="Lecturer_HomeManageCourse.jsp">Courses</a>
+  <a class="btns active" href="CourseServletController?action=view">Courses</a>
   <a class="btns" href="Lecturer_ViewAssignment.jsp">Assignment</a>
-  <a class="btns" href="#contact">Student List</a>
+  <a class="btns" href="CourseStud?action=studentlist">Student List</a>
   <a class="btns" href="#about">Manage Grade</a>
-  <a class="btns" href="#about">Logout</a>
+  <a class="btns" href="logout.jsp">Logout</a>
 </div>
 
 <script>

@@ -162,7 +162,7 @@
             <form method="get" id="loginform" action="loginUser">
                 <input type="text" name="txt_username" placeholder="Username"/>
                 <input type="password" name="txt_password" placeholder="Password"/>
-                <input type="hidden" name="action" value="view"/>
+                <input type="hidden" name="action" value="home"/>
                 <select type="text" name="txt_role">
                     <option selected="selected"> Login As</option>
                     <option value="1"> Teacher</option>

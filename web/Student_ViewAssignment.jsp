@@ -6,8 +6,8 @@
 <html>
      <%@include file="layout_header.jsp" %>
  <body>
-     <%@include file="layout_navbar.jsp" %>
-     <%@include file="layout_sidebar.jsp" %>
+     <%@include file="layout_navbar_student.jsp" %>
+        <%@include file="layout_sidebar_student.jsp" %>
      
       <div class="content">
       

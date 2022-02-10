@@ -25,7 +25,7 @@
             </div>
 
         </div>
-        <div class="content2">
+       <div class="content2">
             <div class="mt-4">
                 <p><b>Currently taught courses</b></p>
                 <table class="table table-striped table-light border-light">
@@ -101,8 +101,9 @@
                                         <td><c:out value="${c.courseName}" /></td>
                                         <td><c:out value="${c.studentCount}" /></td>
                                         <td><c:out value="${c.lecturerUsername}" /></td>
-                                        <td><button type="submit">Teach</button></td>
-
+                                        <c:if test="${c.lecturerUsername eq ''}">
+                                            <td><button type="submit">Teach</button></td>
+                                        </c:if>        
                                     </tr>
                                 </form>
                             </c:if>

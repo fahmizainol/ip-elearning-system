@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Fahmi ZB 仕事
+ * @author Fahmi ZB 
  */
 public class StudentProfileController extends HttpServlet {
 
@@ -34,8 +34,6 @@ public class StudentProfileController extends HttpServlet {
             throws ServletException, IOException {
         
         try{
-//            String action = request.getServletPath();
-//            String action = "";
             String action = request.getParameter("action");
             
             switch(action){
@@ -51,30 +49,18 @@ public class StudentProfileController extends HttpServlet {
         }
     }
     
-//    private void listCourse(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-//        try{
-//            coursedb = new CourseDAO();
-//            List<Course> listCourse = coursedb.selectAllCourses();
-//            request.setAttribute("listCourse", listCourse); 
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("Lecturer_HomeManageCourse.jsp");
-//            dispatcher.forward(request, response);
-//            
-//        } catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        
-//    }
-//    
     private void updateProfile(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
         try{
             HttpSession session = request.getSession();
+            Student studentsession = (Student) request.getSession().getAttribute("student");
             int studentID = Integer.parseInt(request.getParameter("studentID"));
             String email = request.getParameter("email");
+            String username = studentsession.getUsername();
             String password = request.getParameter("password");
             String fullname = request.getParameter("fullname");
             String phone = request.getParameter("phone");
             
-            student = new Student(studentID, email, password, fullname, phone);
+            student = new Student(studentID, email, username, password, fullname, phone);
             session.setAttribute("student", student);
             
             sd.updateStudent(student);

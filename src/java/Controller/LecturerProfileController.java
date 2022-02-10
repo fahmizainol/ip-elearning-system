@@ -69,13 +69,15 @@ public class LecturerProfileController extends HttpServlet {
     private void updateProfile(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
         try{
             HttpSession session = request.getSession();
+            Lecturer lecturersession = (Lecturer) request.getSession().getAttribute("lecturer");
             int lectID = Integer.parseInt(request.getParameter("lectID"));
             String email = request.getParameter("email");
+            String username = lecturersession.getUsername();
             String password = request.getParameter("password");
             String fullname = request.getParameter("fullname");
             String phone = request.getParameter("phone");
             
-            lecturer = new Lecturer(lectID, email, password, fullname, phone);
+            lecturer = new Lecturer(lectID, email, username, password, fullname, phone);
             session.setAttribute("lecturer", lecturer);
             
             ld.updateLecturer(lecturer);

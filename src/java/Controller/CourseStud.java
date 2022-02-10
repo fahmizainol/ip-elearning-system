@@ -13,6 +13,7 @@ import Model.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,16 +45,58 @@ public class CourseStud extends HttpServlet {
             String action = request.getParameter("action");
             
             switch(action){
-              
+                case "updatestatus":
+                    updateRegisterStatus(request, response);
+                    break;
+                case "studentlist":
+                    displayStudentList(request, response);
+                    break;
+                case "view":
+                    listCourse(request, response);
+                    break;
                 case "register":
                     RegisterCourse(request,response);
                     break;
                 default:
-                    listCourse(request, response);
+                    listCourseStud(request, response);
                     break;
             }
         } catch (SQLException ex) {
             Logger.getLogger(CourseServletController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    private void updateRegisterStatus(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+        try{
+            HttpSession session = request.getSession();
+            String status = request.getParameter("status");
+            String id = request.getParameter("id");
+            coursedb = new CourseDAO();
+            coursedb.updateStudCourseStatus(status, id);
+            displayStudentList(request, response);
+            
+        }catch(Exception e){
+            
+        }
+        
+    }
+    
+    
+    
+    private void displayStudentList(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+        try{
+            HttpSession session = request.getSession();
+            coursedb = new CourseDAO();
+            lecturer = (Lecturer) request.getSession().getAttribute("lecturer");
+            List<StudCourse> studentList = new ArrayList<>();
+            studentList = coursedb.selectAllCoursesStudLecturer(lecturer);
+            session.setAttribute("studentList", studentList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Lecturer_StudentList.jsp");
+            dispatcher.forward(request, response);
+            
+        } catch(Exception e){
+            e.printStackTrace();
         }
         
     }
@@ -78,7 +121,7 @@ public class CourseStud extends HttpServlet {
             coursedb = new CourseDAO();
             List<StudCourse> listCourse = coursedb.selectAllCoursesStud();
             session.setAttribute("course", listCourse); 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Student_Home.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Student_Homepage.jsp");
             dispatcher.forward(request, response);
             
         } catch(Exception e){
@@ -98,9 +141,10 @@ public class CourseStud extends HttpServlet {
             String courseCode = request.getParameter("courseCode");
             String courseName = request.getParameter("courseName");
             String lect = request.getParameter("lecturer");
+            String registerStatus = "PENDING";
             String studName = student.getUsername();
             
-            sCourse = new StudCourse(courseCode, courseName, studName, lect);
+            sCourse = new StudCourse(courseCode, courseName, studName, lect, registerStatus);
             
             coursedb.RegisterCourse(sCourse);
             
