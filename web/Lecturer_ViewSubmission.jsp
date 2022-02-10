@@ -45,13 +45,10 @@
                         <thead>
                             <tr>
 
-                                <th style="text-align: center">Course</th>
-                                <th style="text-align: center">Title</th>
-                                <th style="text-align: center">Created On</th>
-                                <th style="text-align: center">Due Date</th>
-                                <th style="text-align: center">Instructions & Materials</th>
-                                <th style="text-align: center">Action</th>
-                                <th style="text-align: center">Action</th>
+                                <th style="text-align: center">#</th>
+                                <th style="text-align: center">Status</th>
+                                <th style="text-align: center">Grade</th>
+
                                 <th style="text-align: center">Action</th>
 
                             </tr>
@@ -66,27 +63,37 @@
 
                                 con = DBConnection.openConnection();
 
-                                String query = "select a.id,a.title,a.duedate,a.filename,a.path,a.added_date, c.courseName from assignment a JOIN courses c ON a.course = c.id";
+                                String query = "select * from submission where assignmentID=?";
                                 ps = con.prepareStatement(query);
+                                System.out.println("works");
+                                ps.setString( 1, request.getParameter("assignmentId"));
                                 rs = ps.executeQuery();
-
+                                int count = 0;
+                                String countString = "";
+                                String idString = "";
                                 while (rs.next()) {
-                                    String id = rs.getString("a.id");
+                                    count++;
+                                    countString = String.valueOf(count);
+                                    int grade = rs.getInt("grade");
+                                    String gradeString = String.valueOf(grade);
+                                    String submitted = rs.getString("submissionTime");
+                                    String status = rs.getString("status");
+                                    String file = rs.getString("file");
+                                    int assignmentID = rs.getInt("assignmentID");
+                                    idString = String.valueOf(assignmentID);
+                            %>                      
 
-                            %>
-
-
-                            <tr>
-                                <td style="text-align: center"><%= rs.getString("c.courseName")%></td>
-                                <td style="text-align: center"><%= rs.getString("a.title")%></td>
-                                <td style="text-align: center"><%= rs.getString("a.added_date")%></td>
-                                <td style="text-align: center"><%= rs.getString("a.duedate")%></td>
-                                <td style="text-align: center"><a href="DownloadAssignment?fileName=<%=rs.getString("a.filename")%>">Download</a></td>
-                                <td style="text-align: center"><a href="Lecturer_UpdateAssignment.jsp?id=<%=id%>">Edit</a></td>
-                                <td style="text-align: center"><a href="Lecturer_DeleteAssignment.jsp?id=<%=id%>">Delete</a></td>
-                                <td style="text-align: center"><a href="Lecturer_ViewSubmission.jsp?assignmentId=<%=id%>">Add Grade</a></td>
-                            </tr>
-                            <% }%>
+                        <tr>
+                            <td style="text-align: center"><%= countString%></td>
+                            <td style="text-align: center"><%= status%></td>
+                            <% if (grade > -1) {%>
+                            <td style="text-align: center"><%= gradeString%></td>
+                            <% } else {%>
+                            <td style="text-align: center"> Not graded yet</td>
+                            <% }%>                        
+                            <td style="text-align: center"><a href="GradeAssignment?assignmentId=<%=idString%>">Add Grade/ Edit Grade</a></td>
+                        </tr>
+                        <% }%>
                         </tbody>
 
 

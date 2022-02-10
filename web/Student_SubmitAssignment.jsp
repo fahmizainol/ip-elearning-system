@@ -54,7 +54,8 @@
                         <% if (submission.getGrade() > -1) {%>
                     <li class="list-group-item"> <span class="w-25 w-lg-50 d-inline-block"> Grade: </span> <%=  submission.getGrade()%> </li>
                         <% } %>
-                        <% if (submission.getEmpty() == "false") {%>
+
+                    <% if (submission.getEmpty() == "false") {%>
                     <li class="list-group-item">
                         <span class="w-25 w-lg-50 d-inline-block"> Submission : </span> <a href="DownloadPdf?file=<%=submission.getFile()%>" class="btn btn-success btn-sm text-light"> Submitted assignment </a>
                     </li>
