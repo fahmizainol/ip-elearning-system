@@ -55,9 +55,11 @@
                         Class.forName("com.mysql.jdbc.Driver");
                         con = DriverManager.getConnection("jdbc:mysql://localhost/elearning", "root", "");
                         //                               String query = "select * from assignment";
-                        String query = "select * from studcourse where studentUN = ? ";
+                        String query = "select * from studcourse where registerStatus = ? and studentUN = ? ";
                         pst = con.prepareStatement(query);
-                        pst.setString(1, student.getUsername());
+                        pst.setString(1, "APPROVED");
+                        pst.setString(2, student.getUsername());
+//                        pst.setString(6, "APPROVED");
                         rs = pst.executeQuery();
 
                         if (rs.next() == false) {

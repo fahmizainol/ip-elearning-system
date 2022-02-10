@@ -54,6 +54,7 @@
                             <th scope="col">Course Title</th>
                             <th scope="col">Lecturer</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                    
@@ -84,6 +85,7 @@
                         <td><%= rs.getString(3)%></td>
                         <td><%= rs.getString(5)%></td>
                         <td><%= rs.getString(6)%></td>
+                        <td><a href="dropCourse.jsp?id=<%=rs.getString("id") %>"><button type="button" class="delete">Drop</button></a></td>
                         
                     </tr>
                     <%} while (rs.next());
