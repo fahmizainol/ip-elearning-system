@@ -88,7 +88,7 @@
                                <br>
                              
                              <div class="back">
-                                 <a href="view assignment.jsp" style="text-align: left;">Back</a>
+                                 <a href="Lecturer_ViewAssignment.jsp" style="text-align: left;">Back</a>
                              </div>
                                 
                          </form>
