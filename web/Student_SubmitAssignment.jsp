@@ -23,15 +23,28 @@
                 <div class="text">
                     <h2>
                         <%=assignment.getTitle()%>
+                        <%= assignment.getId()%>
                     </h2>
-
                     <a href="DownloadPdf?file=<%=assignment.getPath()%>">
-                    Download
+                        Download
                     </a>
                 </div>
-
             </div>
             <div class="content2">
+                <!--Trial-->
+                File: <br />
 
-                </body>
-                </html>
+                <form method="POST" action="SubmitAssignment2" enctype="multipart/form-data" >
+
+                    File:
+                    <input type="file" name="file" id="file" /> <br/>
+                    Destination:
+                    <input type="text" value="/" name="destination"/>
+                    </br>
+                    <input type="submit" value="Upload" name="upload" id="upload" />
+                </form>
+            </div>
+
+
+    </body>
+</html>
